@@ -1,0 +1,505 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "d!nk Publication Structure",
+    "description": "The json structure of data created by the d!nk Powerpoint plugin",
+    "attributes": {
+        "size": {
+            "description": "Display size info",
+            "type": "object",
+            "properties": {
+                "landscape": {
+                    "type": "object",
+                    "properties": {
+                        "width": {
+                            "description": "Landscape width",
+                            "type": "number"
+                        },
+                        "height": {
+                            "description": "Landscape height",
+                            "type": "number"
+                        }
+                    }
+                },
+                "portrait": {
+                    "type": "object",
+                    "properties": {
+                        "width": {
+                            "description": "Portrait width",
+                            "type": "number"
+                        },
+                        "height": {
+                            "description": "Portrait height",
+                            "type": "number"
+                        }
+                    }
+                }
+            }
+        },
+        "position": {
+            "description": "Position info",
+            "type": "object",
+            "properties": {
+                "landscape": {
+                    "type": "object",
+                    "properties": {
+                        "top": {
+                            "description": "Y coordinate",
+                            "type": "number"
+                        },
+                        "left": {
+                            "description": "X coordinate",
+                            "type": "number"
+                        }
+                    }
+                },
+                "portrait": {
+                    "type": "object",
+                    "properties": {
+                        "top": {
+                            "description": "Y coordinate",
+                            "type": "number"
+                        },
+                        "left": {
+                            "description": "X coordinate",
+                            "type": "number"
+                        }
+                    }
+                }
+            }
+        },
+        "navigation": {
+            "description": "Navigation info",
+            "type": "object",
+            "properties": {
+                "previous": {
+                    "description": "Determines if user can go back to previous page by sliding",
+                    "type": "boolean",
+                },
+                "next": {
+                    "description": "Determines if user can go to next page by sliding",
+                    "type": "boolean",
+                }
+            },
+            "required": ["next", "previous"]
+        },
+        "visibility": {
+            "description": "Visibility info",
+            "type": "object",
+            "properties": {
+                "portrait": {
+                    "description": "Determines if component is visible in portrait mode",
+                    "type": "boolean",
+                },
+                "landscape": {
+                    "description": "Determines if component is visible in landscape mode",
+                    "type": "boolean",
+                }
+            },
+            "required": ["portrait", "landscape"]
+        },
+        "css": {
+            "description": "CSS rules",
+            "type": "object",
+            "properties": {
+                "rules": {
+                    "type": "array"
+                }
+            },
+            "required": ["rules"]
+        },
+        "userdata": {
+            "description": "User data, used by dynamicValue to know the path of the component",
+            "type": "object",
+            "properties": {
+                "path": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": ["path", "name"]
+        }
+    },
+    "components": {
+        "magjet": {
+            "description": "Basic magjet",
+            "type": "object",
+            "properties": {
+                "size": {
+                    "$ref": "#/attributes/size"
+                },
+                "position": {
+                    "$ref": "#/attributes/position"
+                },
+                "visibility": {
+                    "$ref": "#/attributes/visibility"
+                }
+            },
+            "required": ["size", "position", "visibility"]
+        },
+        "image": {
+            "description": "Image component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["image"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "width": {
+                                "type": "number"
+                            },
+                            "height": {
+                                "type": "number"
+                            },
+                            "src": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["width", "height", "src"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
+        "advanced": {
+            "description": "Advanced component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["advanced"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "js": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["js"]
+                    },
+                    "assets": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": ["type", "data", "assets"]
+            }]
+        },
+        "text": {
+            "description": "Text component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["text"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "content": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["content"]
+                    },
+                    "css": {
+                        "$ref": "#/attributes/css"
+                    }
+                },
+                "required": ["type", "data", "css"]
+            }]
+        },
+        "slider": {
+            "description": "Slider component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["slider"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "userData": {
+                                "$ref": "#/attributes/userdata"
+                            },
+                            "count": {
+                                "type": "number",
+                            },
+                            "total": {
+                                "type": "boolean",
+                            },
+                            "handle": {
+                                "type": "object",
+                                "properties": {
+                                    "width": {
+                                        "type": "number"
+                                    }
+                                }
+                            },
+                            "values": {
+                                "type": "array",
+                            },
+                            "default": {
+                                "type": "string",
+                            }
+                        },
+                        "required": ["userData", "count", "total", "handle", "values", "default"]
+                    },
+                    "css": {
+                        "$ref": "#/attributes/css"
+                    }
+                },
+                "required": ["type", "data", "css"]
+            }]
+        },
+        "webLink": {
+            "description": "webLink component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["webLink"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "src": {
+                                "description": "the url we need to open",
+                                "type": "string"
+                            }
+                        },
+                        "required": ["src"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
+        "storyLink": {
+            "description": "storyLink component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["storyLink"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "story": {
+                                "description": "the page the user wants to open, can be an identifier or a special string",
+                                "type": "string",
+                                "pattern":"\\b(next|back|forward|source|previous|no|^[0-9]*$)\\b"
+                            },
+                            "animation": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["story", "animation"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
+        "pdfLink": {
+            "description": "pdfLink component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["pdfLink"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "src": {
+                                "description": "the source of the pdf document",
+                                "type": "string"
+                            },
+                            "startPage": {
+                                "type": "number"
+                            },
+                            "externalApp": {
+                                "type": "boolean"
+                            }
+                        },
+                        "required": ["src", "startPage", "externalApp"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
+        "publicationLink": {
+            "description": "publicationLink component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["publicationLink"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "publicationName": {
+                                "description": "the name of the publication the user wants to open",
+                                "type": "string"
+                            },
+                            "story": {
+                                "description": "the page that should be shown when opening the publication",
+                                "type": "string",
+                                "pattern": "^[0-9]*$"
+                            }
+                        },
+                        "required": ["publicationName", "story"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
+        "video": {
+            "description": "video component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "size": {
+                        "$ref": "#/attributes/size"
+                    },
+                    "position": {
+                        "$ref": "#/attributes/position"
+                    },
+                    "visibility": {
+                        "$ref": "#/attributes/visibility"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["video"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "src": {
+                                "type": "string"
+                            },
+                            "loop": {
+                                "type": "boolean"
+                            },
+                            "controls": {
+                                "type": "boolean"
+                            },
+                            "autoPlay": {
+                                "type": "boolean"
+                            },
+                            "image": {
+                                "description": "the poster image aka placeholder for this video",
+                                "type": "object",
+                                "properties": {
+                                    "width": {
+                                        "type": "number"
+                                    },
+                                    "height": {
+                                        "type": "number"
+                                    },
+                                    "src": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "required": ["src", "image"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        }
+    },
+    "definitions": {
+        "story": {
+            "description": "A page within a publication",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "pattern": "^[0-9]*$"
+                },
+                "slideId": {
+                    "type": "string",
+                    "pattern": "^[0-9]*$"
+                },
+                "navigation": {
+                    "$ref": "#/attributes/navigation"
+                },
+                "magjets": {
+                    "description": "Components of the story",
+                    "type": "array",
+                    "items": {
+                        "oneOf": [{
+                            "$ref": "#/components/image"
+                        }, {
+                            "$ref": "#/components/advanced"
+                        }, {
+                            "$ref": "#/components/slider"
+                        }, {
+                            "$ref": "#/components/webLink"
+                        }, {
+                            "$ref": "#/components/storyLink"
+                        }, {
+                            "$ref": "#/components/pdfLink"
+                        }, {
+                            "$ref": "#/components/publicationLink"
+                        }, {
+                            "$ref": "#/components/video"
+                        }, {
+                            "$ref": "#/components/text"
+                        }]
+                    }
+                }
+            },
+            "required": ["id", "slideId", "navigation"]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "size": {
+            "$ref": "#/attributes/size"
+        },
+        "aspectRatio": {
+            "description": "The aspect ratio of the publication",
+            "type": "string",
+            "enum": ["4:3", "16:9", "16:10", "3:2"]
+        },
+        "stories": {
+            "description": "Pages of the publication",
+            "type": "array",
+            "items": {
+                "oneOf": [{
+                    "$ref": "#/definitions/story"
+                }]
+            }
+        }
+    },
+    "required": ["size", "aspectRatio"]
+}
