@@ -413,6 +413,33 @@
                 "required": ["type", "data"]
             }]
         },
+        "pdfSelect": {
+            "description": "pdfSelect component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["pdfSelect"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "files": {
+                                "description": "the name of pdf files you can select",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                            }
+                        },
+                        "required": ["files"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
         "video": {
             "description": "video component",
             "allOf": [{
@@ -504,8 +531,10 @@
                             "$ref": "#/components/pdfLink"
                         }, {
                             "$ref": "#/components/refreshLink"
-                        },{
+                        }, {
                             "$ref": "#/components/publicationLink"
+                        }, {
+                            "$ref": "#/components/pdfSelect"
                         }, {
                             "$ref": "#/components/video"
                         }, {
