@@ -503,6 +503,8 @@
                         }, {
                             "$ref": "#/components/pdfLink"
                         }, {
+                            "$ref": "#/components/refreshLink"
+                        },{
                             "$ref": "#/components/publicationLink"
                         }, {
                             "$ref": "#/components/video"
