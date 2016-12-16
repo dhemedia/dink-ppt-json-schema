@@ -350,6 +350,40 @@
                 "required": ["type", "data"]
             }]
         },
+        "refreshLink": {
+            "description": "refreshLink component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["refreshLink"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "refresh_target": {
+                                "description": "page to show after the publication has been refreshed",
+                                "type": "string"
+                            },
+                            "timer": {
+                                "description": "a timer starts counting when there is no activity",
+                                "type": "string",
+                                "enum": ["yes", "no"]
+                            },
+                            "milli": {
+                                "description": "number of milliseconds after which to refresh, used by timer",
+                                "type": "string",
+                                "pattern": "^[0-9]*$"
+                            }
+                        },
+                        "required": ["refresh_target", "timer", "milli"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
         "publicationLink": {
             "description": "publicationLink component",
             "allOf": [{
