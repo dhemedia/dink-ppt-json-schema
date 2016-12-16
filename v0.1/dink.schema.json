@@ -308,7 +308,7 @@
                             "story": {
                                 "description": "the page the user wants to open, can be an identifier or a special string",
                                 "type": "string",
-                                "pattern":"\\b(next|back|forward|source|previous|no|^[0-9]*$)\\b"
+                                "pattern": "\\b(next|back|forward|source|previous|no|^[0-9]*$)\\b"
                             },
                             "animation": {
                                 "type": "string"
@@ -430,7 +430,7 @@
                                 "description": "the name of pdf files you can select",
                                 "type": "array",
                                 "items": {
-                                  "type": "string"
+                                    "type": "string"
                                 }
                             }
                         },
@@ -438,6 +438,47 @@
                     }
                 },
                 "required": ["type", "data"]
+            }]
+        },
+        "signature": {
+            "description": "signature component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["signature"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "userData": {
+                                "$ref": "#/attributes/userdata"
+                            },
+                            "strokeColor": {
+                                "type": "string"
+                            },
+                            "lineWidth": {
+                                "type": "number"
+                            },
+                            "buttonLabel": {
+                                "description": "the label appearing on the button that can be used to clear the signature canvas",
+                                "type": "string"
+                            },
+                            "buttonPosition": {
+                                "description": "the position of the button - relative to the canvas - that can be used to clear the signature canvas",
+                                "type": "string",
+                                "enum": ["top left", "top right", "bottom right", "bottom left"]
+                            }
+                        },
+                        "required": ["strokeColor", "lineWidth", "buttonLabel", "buttonPosition"]
+                    },
+                    "css": {
+                        "$ref": "#/attributes/css"
+                    }
+                },
+                "required": ["type", "data", "css"]
             }]
         },
         "video": {
@@ -535,6 +576,8 @@
                             "$ref": "#/components/publicationLink"
                         }, {
                             "$ref": "#/components/pdfSelect"
+                        },{
+                            "$ref": "#/components/signature"
                         }, {
                             "$ref": "#/components/video"
                         }, {
