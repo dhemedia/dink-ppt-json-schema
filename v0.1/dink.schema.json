@@ -441,7 +441,7 @@
             }]
         },
         "signature": {
-            "description": "signature component",
+            "description": "signature component, using a canvas to allow users to sign a publication",
             "allOf": [{
                 "$ref": "#/components/magjet"
             }, {
@@ -473,6 +473,92 @@
                             }
                         },
                         "required": ["strokeColor", "lineWidth", "buttonLabel", "buttonPosition"]
+                    },
+                    "css": {
+                        "$ref": "#/attributes/css"
+                    }
+                },
+                "required": ["type", "data", "css"]
+            }]
+        },
+        "graphicSelect": {
+            "description": "graphicSelect component a.k.a. select hotzone, equivalent of html area element",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["graphicSelect"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "userData": {
+                                "$ref": "#/attributes/userdata"
+                            },
+                            "image": {
+                                "description": "the background image",
+                                "type": "object",
+                                "properties": {
+                                  "src" : {
+                                    "type": "string"
+                                  },
+                                  "width" : {
+                                    "type": "number"
+                                  },
+                                  "height" : {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": ["src", "width", "height"]
+                            },
+                            "areas": {
+                                "description": "specific zones/areas that can be clicked",
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "top" : {
+                                      "description": "y-position relative to the hotzone magjet",
+                                      "type": "number"
+                                    },
+                                    "left" : {
+                                      "description": "x-position relative to the hotzone magjet",
+                                      "type": "number"
+                                    },
+                                    "type" : {
+                                      "description": "shape of the clickable area",
+                                      "type": "string",
+                                      "enum": ["circle"]
+                                    },
+                                    "value" : {
+                                      "description": "the value associated with this specific zone",
+                                      "type": "string"
+                                    },
+                                    "radius" : {
+                                      "description": "radius of the circle, if 2 values are given they will determine the width and height of an ellipse",
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number",
+                                      },
+                                      "minItems": 1,
+                                      "maxItems": 2
+                                    },
+                                    "path" : {
+                                      "description": "same as userData.path",
+                                      "type": "string"
+                                    },
+                                    "name" : {
+                                      "description": "same as userData.name",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": ["top", "left", "type", "radius", "path", "name", "value"]
+                                }
+                            }
+                        },
+                        "required": ["userData", "image", "areas"]
                     },
                     "css": {
                         "$ref": "#/attributes/css"
@@ -578,6 +664,8 @@
                             "$ref": "#/components/pdfSelect"
                         },{
                             "$ref": "#/components/signature"
+                        }, {
+                            "$ref": "#/components/graphicSelect"
                         }, {
                             "$ref": "#/components/video"
                         }, {
