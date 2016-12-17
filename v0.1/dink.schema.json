@@ -120,7 +120,7 @@
             },
             "required": ["path", "name"]
         },
-        "properyEnabled": {
+        "propertyEnabled": {
             "description": "structure often used to disable/enable property",
             "type": "object",
             "properties": {
@@ -649,19 +649,19 @@
                                         "type": "object",
                                         "properties": {
                                             "to": {
-                                                "$ref": "#/attributes/properyEnabled"
+                                                "$ref": "#/attributes/propertyEnabled"
                                             },
                                             "from": {
-                                                "$ref": "#/attributes/properyEnabled"
+                                                "$ref": "#/attributes/propertyEnabled"
                                             },
                                             "subject": {
-                                                "$ref": "#/attributes/properyEnabled"
+                                                "$ref": "#/attributes/propertyEnabled"
                                             },
                                             "body": {
                                                 "type": "object",
                                                 "properties": {
                                                     "content": {
-                                                        "$ref": "#/attributes/properyEnabled"
+                                                        "$ref": "#/attributes/propertyEnabled"
                                                     }
                                                 },
                                                 "required": ["content"]
