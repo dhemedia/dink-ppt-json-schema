@@ -578,7 +578,7 @@
             }]
         },
         "mail": {
-            "description": "mail component",
+            "description": "@deprecated. Mail component, now moved to submit button configuration",
             "allOf": [{
                 "$ref": "#/components/magjet"
             }, {
@@ -738,6 +738,51 @@
                 "required": ["type", "data"]
             }]
         },
+        "input": {
+            "description": "input component a.k.a. open question magjet",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["input"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "userData": {
+                                "$ref": "#/attributes/userData"
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": ["text","number","textarea","date"]
+                            },
+                            "label": {
+                                "description": "the question being asked",
+                                "type": "string"
+                            },
+                            "default": {
+                                "description": "the default answer to the question",
+                                "type": "string"
+                            },
+                            "sheetInfo": {
+                                "column": {
+                                  "description": "the column/field value from the dynamicValue spreadsheet that should be displayed in this input field",
+                                  "type": "string"
+                                },
+                                "path": {
+                                  "description": "@deprecated. Use userData property values instead",
+                                  "type": "string"
+                                }
+                            }
+                        },
+                        "required": ["userData","type","label","default"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
         "video": {
             "description": "video component",
             "allOf": [{
@@ -841,6 +886,8 @@
                             "$ref": "#/components/graphicSelect"
                         }, {
                             "$ref": "#/components/dynamicValue"
+                        }, {
+                            "$ref": "#/components/input"
                         }, {
                             "$ref": "#/components/video"
                         }, {
