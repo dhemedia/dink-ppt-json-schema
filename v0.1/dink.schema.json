@@ -733,9 +733,12 @@
                             }
                         },
                         "required": ["userData", "enterprise", "spreadsheet", "displayColumn", "useHistory", "showWarning", "selectColumn"]
+                    },
+                    "css": {
+                        "$ref": "#/attributes/css"
                     }
                 },
-                "required": ["type", "data"]
+                "required": ["type", "data","css"]
             }]
         },
         "input": {
@@ -778,6 +781,38 @@
                             }
                         },
                         "required": ["userData","type","label","default"]
+                    },
+                    "css": {
+                        "$ref": "#/attributes/css"
+                    }
+                },
+                "required": ["type","data","css"]
+            }]
+        },
+        "inputValidator": {
+            "description": "pdfSelect component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["inputValidator"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "collectorPath": {
+                                "type": "string"
+                            },
+                            "inputPaths": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "required": ["collectorPath","inputPaths"]
                     }
                 },
                 "required": ["type", "data"]
@@ -888,6 +923,8 @@
                             "$ref": "#/components/dynamicValue"
                         }, {
                             "$ref": "#/components/input"
+                        }, {
+                            "$ref": "#/components/inputValidator"
                         }, {
                             "$ref": "#/components/video"
                         }, {
