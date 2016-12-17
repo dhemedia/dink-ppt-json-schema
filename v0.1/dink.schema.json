@@ -802,7 +802,7 @@
             }]
         },
         "inputValidator": {
-            "description": "pdfSelect component",
+            "description": "inputValidator component",
             "allOf": [{
                 "$ref": "#/components/magjet"
             }, {
