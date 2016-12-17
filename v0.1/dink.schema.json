@@ -107,7 +107,7 @@
             },
             "required": ["rules"]
         },
-        "userdata": {
+        "userData": {
             "description": "User data, used by dynamicValue to know the path of the component",
             "type": "object",
             "properties": {
@@ -119,6 +119,16 @@
                 }
             },
             "required": ["path", "name"]
+        },
+        "properyEnabled": {
+            "description": "structure often used to disable/enable property",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "required": ["enabled"]
         }
     },
     "components": {
@@ -236,7 +246,7 @@
                         "type": "object",
                         "properties": {
                             "userData": {
-                                "$ref": "#/attributes/userdata"
+                                "$ref": "#/attributes/userData"
                             },
                             "count": {
                                 "type": "number",
@@ -454,7 +464,7 @@
                         "type": "object",
                         "properties": {
                             "userData": {
-                                "$ref": "#/attributes/userdata"
+                                "$ref": "#/attributes/userData"
                             },
                             "strokeColor": {
                                 "type": "string"
@@ -495,21 +505,21 @@
                         "type": "object",
                         "properties": {
                             "userData": {
-                                "$ref": "#/attributes/userdata"
+                                "$ref": "#/attributes/userData"
                             },
                             "image": {
                                 "description": "the background image",
                                 "type": "object",
                                 "properties": {
-                                  "src" : {
-                                    "type": "string"
-                                  },
-                                  "width" : {
-                                    "type": "number"
-                                  },
-                                  "height" : {
-                                    "type": "number"
-                                  }
+                                    "src": {
+                                        "type": "string"
+                                    },
+                                    "width": {
+                                        "type": "number"
+                                    },
+                                    "height": {
+                                        "type": "number"
+                                    }
                                 },
                                 "required": ["src", "width", "height"]
                             },
@@ -517,44 +527,44 @@
                                 "description": "specific zones/areas that can be clicked",
                                 "type": "array",
                                 "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "top" : {
-                                      "description": "y-position relative to the hotzone magjet",
-                                      "type": "number"
+                                    "type": "object",
+                                    "properties": {
+                                        "top": {
+                                            "description": "y-position relative to the hotzone magjet",
+                                            "type": "number"
+                                        },
+                                        "left": {
+                                            "description": "x-position relative to the hotzone magjet",
+                                            "type": "number"
+                                        },
+                                        "type": {
+                                            "description": "shape of the clickable area",
+                                            "type": "string",
+                                            "enum": ["circle"]
+                                        },
+                                        "value": {
+                                            "description": "the value associated with this specific zone",
+                                            "type": "string"
+                                        },
+                                        "radius": {
+                                            "description": "radius of the circle, if 2 values are given they will determine the width and height of an ellipse",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number",
+                                            },
+                                            "minItems": 1,
+                                            "maxItems": 2
+                                        },
+                                        "path": {
+                                            "description": "same purpose as userData.path",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "description": "same purpose as userData.name",
+                                            "type": "string"
+                                        }
                                     },
-                                    "left" : {
-                                      "description": "x-position relative to the hotzone magjet",
-                                      "type": "number"
-                                    },
-                                    "type" : {
-                                      "description": "shape of the clickable area",
-                                      "type": "string",
-                                      "enum": ["circle"]
-                                    },
-                                    "value" : {
-                                      "description": "the value associated with this specific zone",
-                                      "type": "string"
-                                    },
-                                    "radius" : {
-                                      "description": "radius of the circle, if 2 values are given they will determine the width and height of an ellipse",
-                                      "type": "array",
-                                      "items": {
-                                        "type": "number",
-                                      },
-                                      "minItems": 1,
-                                      "maxItems": 2
-                                    },
-                                    "path" : {
-                                      "description": "same as userData.path",
-                                      "type": "string"
-                                    },
-                                    "name" : {
-                                      "description": "same as userData.name",
-                                      "type": "string"
-                                    }
-                                  },
-                                  "required": ["top", "left", "type", "radius", "path", "name", "value"]
+                                    "required": ["top", "left", "type", "radius", "path", "name", "value"]
                                 }
                             }
                         },
@@ -565,6 +575,167 @@
                     }
                 },
                 "required": ["type", "data", "css"]
+            }]
+        },
+        "mail": {
+            "description": "mail component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["mail"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["client", "server"]
+                            },
+                            "client": {
+                                "type": "object",
+                                "properties": {
+                                    "to": {
+                                        "type": "string"
+                                    },
+                                    "cc": {
+                                        "type": "string"
+                                    },
+                                    "subject": {
+                                        "type": "string"
+                                    },
+                                    "body": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["to", "cc", "subject", "body"]
+                            },
+                            "server": {
+                                "type": "object",
+                                "properties": {
+                                    "to": {
+                                        "type": "string"
+                                    },
+                                    "cc": {
+                                        "type": "string"
+                                    },
+                                    "from": {
+                                        "type": "string"
+                                    },
+                                    "subject": {
+                                        "type": "string"
+                                    },
+                                    "replyTo": {
+                                        "type": "string"
+                                    },
+                                    "body": {
+                                        "type": "object",
+                                        "properties": {
+                                            "start": {
+                                                "type": "string"
+                                            },
+                                            "content": {
+                                                "type": "string"
+                                            },
+                                            "end": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["start", "content", "end"]
+                                    },
+                                    "user": {
+                                        "type": "object",
+                                        "properties": {
+                                            "to": {
+                                                "$ref": "#/attributes/properyEnabled"
+                                            },
+                                            "from": {
+                                                "$ref": "#/attributes/properyEnabled"
+                                            },
+                                            "subject": {
+                                                "$ref": "#/attributes/properyEnabled"
+                                            },
+                                            "body": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "content": {
+                                                        "$ref": "#/attributes/properyEnabled"
+                                                    }
+                                                },
+                                                "required": ["content"]
+                                            }
+                                        }
+                                    }
+                                },
+                                "required": ["to", "cc", "subject", "replyTo", "body", "user"]
+                            }
+                        },
+                        "required": ["type"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
+        "dynamicValue": {
+            "description": "dynamicValue component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["dynamicValue"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "userData": {
+                                "$ref": "#/attributes/userData"
+                            },
+                            "enterprise": {
+                                "description": "key of the enterprise in data store",
+                                "type": "string"
+                            },
+                            "spreadsheet": {
+                                "description": "key of the Google Drive spreadsheet",
+                                "type": "string"
+                            },
+                            "displayColumn": {
+                                "description": "field shown as label in dropdown",
+                                "type": "string"
+                            },
+                            "useHistory": {
+                                "description": "determines if data should be stored for offline usage",
+                                "type": "boolean"
+                            },
+                            "showWarning": {
+                                "description": "show warning when new data is available",
+                                "type": "boolean"
+                            },
+                            "selectColumn": {
+                                "description": "fields and values that are used to build a query retrieving specific results",
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "description": "field/column name",
+                                            "type": "string"
+                                        },
+                                        "value": {
+                                            "description": "field/column value",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "required": ["userData", "enterprise", "spreadsheet", "displayColumn", "useHistory", "showWarning", "selectColumn"]
+                    }
+                },
+                "required": ["type", "data"]
             }]
         },
         "video": {
@@ -662,10 +833,14 @@
                             "$ref": "#/components/publicationLink"
                         }, {
                             "$ref": "#/components/pdfSelect"
-                        },{
+                        }, {
                             "$ref": "#/components/signature"
                         }, {
+                            "$ref": "#/components/mail"
+                        }, {
                             "$ref": "#/components/graphicSelect"
+                        }, {
+                            "$ref": "#/components/dynamicValue"
                         }, {
                             "$ref": "#/components/video"
                         }, {
