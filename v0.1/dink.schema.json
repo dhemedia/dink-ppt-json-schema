@@ -753,6 +753,57 @@
                 "required": ["type", "data","css"]
             }]
         },
+        "sheetRecord": {
+            "description": "sheetRecord component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["sheetRecord"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "userData": {
+                                "$ref": "#/attributes/userData"
+                            },
+                            "enterprise": {
+                                "description": "key of the enterprise in data store",
+                                "type": "string"
+                            },
+                            "spreadsheet": {
+                                "description": "key of the Google Drive spreadsheet",
+                                "type": "string"
+                            },
+                            "submitLabel": {
+                                "type": "string"
+                            },
+                            "columns": {
+                                "description": "columns and their values to be used for a new record/row in a spreadsheet",
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "column": {
+                                            "description": "field/column name",
+                                            "type": "string"
+                                        },
+                                        "input": {
+                                            "description": "field/column input value",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "required": ["userData", "enterprise", "spreadsheet", "submitLabel", "columns"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
         "input": {
             "description": "input component a.k.a. open question magjet",
             "allOf": [{
@@ -802,7 +853,7 @@
             }]
         },
         "inputValidator": {
-            "description": "inputValidator component",
+            "description": "inputValidator component maps to userinputvalidator magjet",
             "allOf": [{
                 "$ref": "#/components/magjet"
             }, {
@@ -934,6 +985,8 @@
                         }, {
                             "$ref": "#/components/dynamicValue"
                         }, {
+                            "$ref": "#/components/sheetRecord"
+                        },{
                             "$ref": "#/components/input"
                         }, {
                             "$ref": "#/components/inputValidator"
