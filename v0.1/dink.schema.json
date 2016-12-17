@@ -328,9 +328,9 @@
                         "type": "object",
                         "properties": {
                             "story": {
-                                "description": "the page the user wants to open, can be an identifier or a special string",
+                                "description": "the page the user wants to open, can be an identifier or a special string. Forward/Back means go to the next/previous page in your history",
                                 "type": "string",
-                                "pattern": "\\b(next|back|forward|source|previous|no|^[0-9]*$)\\b"
+                                "pattern": "\\b(next|previous|back|forward|source|no|^[0-9]*$)\\b"
                             },
                             "animation": {
                                 "type": "string"
