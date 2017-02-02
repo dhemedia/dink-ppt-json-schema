@@ -104,16 +104,16 @@
                 "rules": {
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "properties": {
-                          "selector": {
-                              "type": "string"
-                          },
-                          "style": {
-                              "type": "object"
-                          }
-                      },
-                      "required": ["selector", "style"]
+                        "type": "object",
+                        "properties": {
+                            "selector": {
+                                "type": "string"
+                            },
+                            "style": {
+                                "type": "object"
+                            }
+                        },
+                        "required": ["selector", "style"]
                     }
                 }
             },
@@ -333,7 +333,10 @@
                                 "pattern": "\\b(next|previous|back|forward|source|no|^[0-9]*$)\\b"
                             },
                             "animation": {
-                                "type": "string"
+                                "description": "the desired page transition effect",
+                                "type": "string",
+                                "default": "none",
+                                "enum": ["none", "slideright", "slideleft", "pop", "fade", "slideup", "slidedown"]
                             }
                         },
                         "required": ["story", "animation"]
@@ -750,7 +753,7 @@
                         "$ref": "#/attributes/css"
                     }
                 },
-                "required": ["type", "data","css"]
+                "required": ["type", "data", "css"]
             }]
         },
         "sheetRecord": {
@@ -822,7 +825,7 @@
                             },
                             "type": {
                                 "type": "string",
-                                "enum": ["text","number","textarea","date"]
+                                "enum": ["text", "number", "textarea", "date"]
                             },
                             "label": {
                                 "description": "the question being asked",
@@ -834,22 +837,22 @@
                             },
                             "sheetInfo": {
                                 "column": {
-                                  "description": "the column/field value from the dynamicValue spreadsheet that should be displayed in this input field",
-                                  "type": "string"
+                                    "description": "the column/field value from the dynamicValue spreadsheet that should be displayed in this input field",
+                                    "type": "string"
                                 },
                                 "path": {
-                                  "description": "@deprecated. Use userData property values instead",
-                                  "type": "string"
+                                    "description": "@deprecated. Use userData property values instead",
+                                    "type": "string"
                                 }
                             }
                         },
-                        "required": ["userData","type","label","default"]
+                        "required": ["userData", "type", "label", "default"]
                     },
                     "css": {
                         "$ref": "#/attributes/css"
                     }
                 },
-                "required": ["type","data","css"]
+                "required": ["type", "data", "css"]
             }]
         },
         "inputValidator": {
@@ -875,7 +878,7 @@
                                 }
                             }
                         },
-                        "required": ["collectorPath","inputPaths"]
+                        "required": ["collectorPath", "inputPaths"]
                     }
                 },
                 "required": ["type", "data"]
@@ -986,7 +989,7 @@
                             "$ref": "#/components/dynamicValue"
                         }, {
                             "$ref": "#/components/sheetRecord"
-                        },{
+                        }, {
                             "$ref": "#/components/input"
                         }, {
                             "$ref": "#/components/inputValidator"
