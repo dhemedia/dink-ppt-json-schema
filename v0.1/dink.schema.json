@@ -73,11 +73,11 @@
             "properties": {
                 "previous": {
                     "description": "Determines if user can go back to previous page by sliding",
-                    "type": "boolean",
+                    "type": "boolean"
                 },
                 "next": {
                     "description": "Determines if user can go to next page by sliding",
-                    "type": "boolean",
+                    "type": "boolean"
                 }
             },
             "required": ["next", "previous"]
@@ -88,11 +88,11 @@
             "properties": {
                 "portrait": {
                     "description": "Determines if component is visible in portrait mode",
-                    "type": "boolean",
+                    "type": "boolean"
                 },
                 "landscape": {
                     "description": "Determines if component is visible in landscape mode",
-                    "type": "boolean",
+                    "type": "boolean"
                 }
             },
             "required": ["portrait", "landscape"]
@@ -261,10 +261,10 @@
                                 "$ref": "#/attributes/userData"
                             },
                             "count": {
-                                "type": "number",
+                                "type": "number"
                             },
                             "total": {
-                                "type": "boolean",
+                                "type": "boolean"
                             },
                             "handle": {
                                 "type": "object",
@@ -275,10 +275,10 @@
                                 }
                             },
                             "values": {
-                                "type": "array",
+                                "type": "array"
                             },
                             "default": {
-                                "type": "string",
+                                "type": "string"
                             }
                         },
                         "required": ["userData", "count", "total", "handle", "values", "default"]
@@ -565,7 +565,7 @@
                                             "description": "radius of the circle, if 2 values are given they will determine the width and height of an ellipse",
                                             "type": "array",
                                             "items": {
-                                                "type": "number",
+                                                "type": "number"
                                             },
                                             "minItems": 1,
                                             "maxItems": 2
@@ -884,6 +884,118 @@
                 "required": ["type", "data"]
             }]
         },
+        "inputCollector": {
+            "description": "inputCollector component maps to userinputcollector magjet",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["inputCollector"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "path": {
+                                "type": "string"
+                            },
+                            "allFieldsAreMandatory": {
+                                "type": "boolean"
+                            },
+                            "messages": {
+                                "type": "object",
+                                "properties": {
+                                    "sending": {
+                                        "type": "string"
+                                    },
+                                    "success": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["sending", "success"]
+                            },
+                            "pdf": {
+                                "type": "object",
+                                "properties": {
+                                    "generate": {
+                                        "type": "object",
+                                        "properties": {
+                                            "append": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "addToMicrosite": {
+                                        "type": "boolean"
+                                    },
+                                    "email": {
+                                        "type": "object",
+                                        "properties": {
+                                            "send": {
+                                                "type": "boolean"
+                                            },
+                                            "to": {
+                                                "type": "string"
+                                            },
+                                            "cc": {
+                                                "type": "string"
+                                            },
+                                            "from": {
+                                                "type": "string"
+                                            },
+                                            "subject": {
+                                                "type": "string"
+                                            },
+                                            "body": {
+                                                "type": "string"
+                                            },
+                                            "path": {
+                                                "description": "@TODO: find out what this is about",
+                                                "type": "object"
+                                            }
+                                        },
+                                        "required": ["send", "to", "cc", "from", "subject", "body", "path"]
+                                    },
+                                    "drive": {
+                                        "type": "object",
+                                        "properties": {
+                                            "send": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    }
+                                },
+                                "required": ["generate", "addToMicrosite", "email", "drive"]
+                            },
+                            "excel": {
+                                "type": "object",
+                                "properties": {
+                                    "send": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "required": ["send"]
+                            },
+                            "syncFileTransactions": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "notificationUrl": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": ["notificationUrl"]
+                                }
+                            }
+                        },
+                        "required": ["path", "allFieldsAreMandatory", "messages", "excel", "syncFileTransactions", "pdf"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
         "video": {
             "description": "video component",
             "allOf": [{
@@ -993,6 +1105,8 @@
                             "$ref": "#/components/input"
                         }, {
                             "$ref": "#/components/inputValidator"
+                        }, {
+                            "$ref": "#/components/inputCollector"
                         }, {
                             "$ref": "#/components/video"
                         }, {
