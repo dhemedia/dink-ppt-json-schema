@@ -1069,8 +1069,9 @@
                                 "$ref": "#/attributes/userData"
                             },
                             "type": {
+                                "description": "determines how the options should be displayed",
                                 "type": "string",
-                                "enum": ["checkbox"]
+                                "enum": ["checkbox", "radio", "list"]
                             },
                             "label": {
                                 "type": "string"
@@ -1079,6 +1080,7 @@
                                 "type": "boolean"
                             },
                             "sheetInfo": {
+                                "description": "optional property that retrieves available options from a spreadsheet",
                                 "column": {
                                     "description": "the column/field values from the dynamicValue spreadsheet that should be displayed as options",
                                     "type": "string"
@@ -1109,7 +1111,7 @@
                                 }
                             }
                         },
-                        "required": ["userData", "type", "label", "bigTextFieldForInput", "sheetInfo", "options"]
+                        "required": ["userData", "type", "label", "bigTextFieldForInput", "options"]
                     }
                 },
                 "required": ["type", "data"]
