@@ -1051,6 +1051,69 @@
                 },
                 "required": ["type", "data"]
             }]
+        },
+        "select": {
+            "description": "select component aka survey magjet",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["select"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "userData": {
+                                "$ref": "#/attributes/userData"
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": ["checkbox"]
+                            },
+                            "label": {
+                                "type": "string"
+                            },
+                            "bigTextFieldForInput": {
+                                "type": "boolean"
+                            },
+                            "sheetInfo": {
+                                "column": {
+                                    "description": "the column/field values from the dynamicValue spreadsheet that should be displayed as options",
+                                    "type": "string"
+                                },
+                                "path": {
+                                    "type": "string"
+                                }
+                            },
+                            "options": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "label": {
+                                            "type": "string"
+                                        },
+                                        "value": {
+                                            "type": "string"
+                                        },
+                                        "editable": {
+                                            "type": "boolean"
+                                        },
+                                        "useTextarea": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["label", "value", "editable", "useTextarea"]
+                                }
+                            }
+                        },
+                        "required": ["userData", "type", "label", "bigTextFieldForInput", "sheetInfo", "options"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
         }
     },
     "definitions": {
@@ -1109,6 +1172,8 @@
                             "$ref": "#/components/inputCollector"
                         }, {
                             "$ref": "#/components/video"
+                        }, {
+                            "$ref": "#/components/select"
                         }, {
                             "$ref": "#/components/text"
                         }]
