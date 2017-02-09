@@ -390,7 +390,8 @@
                         "properties": {
                             "refresh_target": {
                                 "description": "page to show after the publication has been refreshed",
-                                "type": "string"
+                                "type": "string",
+                                "pattern": "(^$|(^S\\d*$))"
                             },
                             "timer": {
                                 "description": "a timer starts counting when there is no activity",
