@@ -439,6 +439,30 @@
                 "required": ["type", "data"]
             }]
         },
+        "kioskLink": {
+            "description": "kioskLink component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["kioskLink"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "kioskName": {
+                                "description": "the name of the kiosk the user wants to open",
+                                "type": "string"
+                            }
+                        },
+                        "required": ["kioskName"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
         "pdfSelect": {
             "description": "pdfSelect component",
             "allOf": [{
@@ -1155,6 +1179,8 @@
                             "$ref": "#/components/refreshLink"
                         }, {
                             "$ref": "#/components/publicationLink"
+                        }, {
+                            "$ref": "#/components/kioskLink"
                         }, {
                             "$ref": "#/components/pdfSelect"
                         }, {
