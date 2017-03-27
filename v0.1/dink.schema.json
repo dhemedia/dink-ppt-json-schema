@@ -928,6 +928,21 @@
                             "allFieldsAreMandatory": {
                                 "type": "boolean"
                             },
+                            "mandatoryFields": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "internetConnectionRequired": {
+                                "type": "boolean"
+                            },
+                            "closePublicationAfterSubmit": {
+                                "type": "boolean"
+                            },
+                            "resetOnSubmit": {
+                                "type": "boolean"
+                            },
                             "messages": {
                                 "type": "object",
                                 "properties": {
