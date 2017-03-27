@@ -940,6 +940,10 @@
                             "closePublicationAfterSubmit": {
                                 "type": "boolean"
                             },
+                            "isReadOnly": {
+                                "description": "means the field values cannot be changed by the user when viewing the publication",
+                                "type": "boolean"
+                            },
                             "resetOnSubmit": {
                                 "type": "boolean"
                             },
