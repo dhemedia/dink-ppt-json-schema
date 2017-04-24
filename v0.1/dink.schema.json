@@ -119,6 +119,63 @@
             },
             "required": ["rules"]
         },
+        "basicStyle": {
+            "description": "Basic style properties",
+            "type": "object",
+            "properties": {
+                "fontSize": {
+                    "type": "number"
+                },
+                "fontFamily": {
+                    "type": "string"
+                },
+                "fontWeight": {
+                    "type": "string",
+                    "enum": ["bold", "bolder", "lighter", "normal"]
+                },
+                "foregroundColor": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "backgroundColor": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "textAlignment": {
+                    "type": "string",
+                    "enum": ["left", "center", "justify", "right"]
+                },
+                "textDecoration": {
+                    "type": "string",
+                    "enum": ["overline", "line-through", "underline"]
+                },
+                "marginBottom": {
+                    "type": "integer"
+                },
+                "marginTop": {
+                    "type": "integer"
+                },
+                "marginLeft": {
+                    "type": "integer"
+                },
+                "marginRight": {
+                    "type": "integer"
+                },
+                "paddingTop": {
+                    "type": "integer"
+                },
+                "paddingBottom": {
+                    "type": "integer"
+                },
+                "paddingLeft": {
+                    "type": "integer"
+                },
+                "paddingRight": {
+                    "type": "integer"
+                }
+            },
+            "required": []
+        },
         "userData": {
             "description": "User data, used by dynamicValue to know the path of the component",
             "type": "object",
@@ -158,7 +215,33 @@
                     "enum": ["none", "slideright", "slideleft", "pop", "fade", "slideup", "slidedown"]
                 }
             },
-            "required": ["story","animation"]
+            "required": ["story", "animation"]
+        },
+        "gradientData": {
+            "description": "structure used to provide data for gradient",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "the type of gradient, only linear for now",
+                    "type": "string",
+                    "enum": ["linear"]
+                },
+                "direction": {
+                    "description": "the direction of the gradient",
+                    "type": "string",
+                    "default": "down",
+                    "enum": ["left", "right", "down", "up"]
+                },
+                "colors": {
+                    "description": "the color stops of the gradient",
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                    }
+                }
+            },
+            "required": ["type", "direction", "colors"]
         }
     },
     "components": {
@@ -303,6 +386,26 @@
                     },
                     "css": {
                         "$ref": "#/attributes/css"
+                    },
+                    "style": {
+                        "allOf": [{
+                            "$ref": "#/attributes/basicStyle"
+                        }, {
+                            "properties": {
+                                "backgroundGradient": {
+                                    "$ref": "#/attributes/gradientData"
+                                },
+                                "selectedForegroundColor": {
+                                    "type": "string",
+                                    "pattern": "^#[0-9a-fA-F]{6}$"
+                                },
+                                "selectedBackgroundColor": {
+                                    "type": "string",
+                                    "pattern": "^#[0-9a-fA-F]{6}$"
+                                }
+                            },
+                            "required": ["selectedForegroundColor", "selectedBackgroundColor"]
+                        }]
                     }
                 },
                 "required": ["type", "data", "css"]
