@@ -141,6 +141,24 @@
                 }
             },
             "required": ["enabled"]
+        },
+        "storyLinkData": {
+            "description": "structure used to provide data for story links",
+            "type": "object",
+            "properties": {
+                "story": {
+                    "description": "the page the user wants to open, can be an identifier or a special string. Forward/Back means go to the next/previous page in your history",
+                    "type": "string",
+                    "pattern": "\\b(next|previous|back|forward|source|no|^[0-9]*$)\\b"
+                },
+                "animation": {
+                    "description": "the desired page transition effect",
+                    "type": "string",
+                    "default": "none",
+                    "enum": ["none", "slideright", "slideleft", "pop", "fade", "slideup", "slidedown"]
+                }
+            },
+            "required": ["story,animation"]
         }
     },
     "components": {
@@ -325,21 +343,7 @@
                         "enum": ["storyLink"]
                     },
                     "data": {
-                        "type": "object",
-                        "properties": {
-                            "story": {
-                                "description": "the page the user wants to open, can be an identifier or a special string. Forward/Back means go to the next/previous page in your history",
-                                "type": "string",
-                                "pattern": "\\b(next|previous|back|forward|source|no|^[0-9]*$)\\b"
-                            },
-                            "animation": {
-                                "description": "the desired page transition effect",
-                                "type": "string",
-                                "default": "none",
-                                "enum": ["none", "slideright", "slideleft", "pop", "fade", "slideup", "slidedown"]
-                            }
-                        },
-                        "required": ["story", "animation"]
+                        "$ref": "#/attributes/storyLinkData"
                     }
                 },
                 "required": ["type", "data"]
@@ -1148,10 +1152,14 @@
                                             "type": "boolean"
                                         },
                                         "useTextarea": {
-                                            "type": "boolean"
+                                            "type": "boolean",
+                                            "default": false
+                                        },
+                                        "storyLink" :{
+                                          "$ref": "#/attributes/storyLinkData"
                                         }
                                     },
-                                    "required": ["label", "value", "editable", "useTextarea"]
+                                    "required": ["label", "value", "editable"]
                                 }
                             }
                         },
