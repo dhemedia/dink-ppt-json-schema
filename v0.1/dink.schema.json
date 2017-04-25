@@ -396,10 +396,12 @@
                                     "$ref": "#/attributes/gradientData"
                                 },
                                 "selectedForegroundColor": {
+                                    "description": "the color of the selected value",
                                     "type": "string",
                                     "pattern": "^#[0-9a-fA-F]{6}$"
                                 },
                                 "selectedBackgroundColor": {
+                                    "description": "the background color of the selected value",
                                     "type": "string",
                                     "pattern": "^#[0-9a-fA-F]{6}$"
                                 }
