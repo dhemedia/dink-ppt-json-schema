@@ -1089,10 +1089,16 @@
                                                 "type": "boolean"
                                             },
                                             "to": {
-                                                "type": "string"
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
                                             },
                                             "cc": {
-                                                "type": "string"
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
                                             },
                                             "from": {
                                                 "type": "string"
