@@ -215,7 +215,7 @@
                     "enum": ["none", "slideright", "slideleft", "pop", "fade", "slideup", "slidedown"]
                 }
             },
-            "required": ["story", "animation"]
+            "required": ["story"]
         },
         "gradientData": {
             "description": "structure used to provide data for gradient",
@@ -1072,12 +1072,19 @@
                                 "type": "object",
                                 "properties": {
                                     "generate": {
-                                        "type": "object",
-                                        "properties": {
-                                            "append": {
-                                                "type": "string"
+                                        "anyOf": [{
+                                            "type": "object",
+                                            "properties": {
+                                                "prepend": {
+                                                    "type": "string"
+                                                },
+                                                "append": {
+                                                    "type": "string"
+                                                }
                                             }
-                                        }
+                                        }, {
+                                            "type": "boolean"
+                                        }]
                                     },
                                     "addToMicrosite": {
                                         "type": "boolean"
@@ -1236,7 +1243,8 @@
                                 "type": "string"
                             },
                             "bigTextFieldForInput": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "default": false
                             },
                             "sheetInfo": {
                                 "description": "optional property that retrieves available options from a spreadsheet",
@@ -1274,7 +1282,7 @@
                                 }
                             }
                         },
-                        "required": ["userData", "type", "label", "bigTextFieldForInput", "options"]
+                        "required": ["userData", "type", "label", "options"]
                     }
                 },
                 "required": ["type", "data"]
