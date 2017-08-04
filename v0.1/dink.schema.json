@@ -1287,6 +1287,64 @@
                 },
                 "required": ["type", "data"]
             }]
+        },
+        "calculation": {
+            "description": "calculation component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["calculation"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "userData": {
+                                "$ref": "#/attributes/userData"
+                            },
+                            "function": {
+                                "type": "string"
+                            },
+                            "inputs": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "required": ["userData", "function", "inputs"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
+        },
+        "converter": {
+            "description": "converter component",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["converter"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "userData": {
+                                "$ref": "#/attributes/userData"
+                            },
+                            "values": {
+                                "type": "object"
+                            }
+                        },
+                        "required": ["userData", "values"]
+                    }
+                },
+                "required": ["type", "data"]
+            }]
         }
     },
     "definitions": {
@@ -1351,6 +1409,10 @@
                             "$ref": "#/components/select"
                         }, {
                             "$ref": "#/components/text"
+                        }, {
+                            "$ref": "#/components/calculation"
+                        }, {
+                            "$ref": "#/components/converter"
                         }]
                     }
                 }
