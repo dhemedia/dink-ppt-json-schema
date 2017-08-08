@@ -1290,61 +1290,50 @@
         },
         "calculation": {
             "description": "calculation component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["calculation"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "userData": {
-                                "$ref": "#/attributes/userData"
-                            },
-                            "function": {
-                                "type": "string"
-                            },
-                            "inputs": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "required": ["userData", "function", "inputs"]
-                    }
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["calculation"]
                 },
-                "required": ["type", "data"]
-            }]
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "userData": {
+                            "$ref": "#/attributes/userData"
+                        },
+                        "function": {
+                            "type": "string"
+                        },
+                        "inputs": {
+                            "type": "object"
+                        }
+                    },
+                    "required": ["userData", "function", "inputs"]
+                }
+            },
+            "required": ["type", "data"]
         },
         "converter": {
             "description": "converter component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["converter"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "userData": {
-                                "$ref": "#/attributes/userData"
-                            },
-                            "values": {
-                                "type": "object"
-                            }
-                        },
-                        "required": ["userData", "values"]
-                    }
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["converter"]
                 },
-                "required": ["type", "data"]
-            }]
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "userData": {
+                            "$ref": "#/attributes/userData"
+                        },
+                        "values": {
+                            "type": "object"
+                        }
+                    },
+                    "required": ["userData", "values"]
+                }
+            },
+            "required": ["type", "data"]
         }
     },
     "definitions": {
