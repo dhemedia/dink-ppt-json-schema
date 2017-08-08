@@ -1060,13 +1060,14 @@
                                 "type": "object",
                                 "properties": {
                                     "sending": {
+                                        "description": "message to display while sending data",
                                         "type": "string"
                                     },
                                     "success": {
                                         "type": "string"
                                     }
                                 },
-                                "required": ["sending", "success"]
+                                "required": ["success"]
                             },
                             "pdf": {
                                 "type": "object",
@@ -1096,16 +1097,28 @@
                                                 "type": "boolean"
                                             },
                                             "to": {
-                                                "type": "array",
-                                                "items": {
+                                                "description": "recipients of the mail",
+                                                "anyOf": [{
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }, {
+                                                    "description": "single email address, can also be an empty string",
                                                     "type": "string"
-                                                }
+                                                }]
                                             },
                                             "cc": {
-                                                "type": "array",
-                                                "items": {
+                                                "description": "recipients in cc of the mail",
+                                                "anyOf": [{
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }, {
+                                                    "description": "single email address, can also be an empty string",
                                                     "type": "string"
-                                                }
+                                                }]
                                             },
                                             "from": {
                                                 "type": "string"
