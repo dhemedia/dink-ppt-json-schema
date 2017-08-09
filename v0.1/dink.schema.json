@@ -1339,6 +1339,9 @@
                         "userData": {
                             "$ref": "#/attributes/userData"
                         },
+                        "input": {
+                            "type": "string"
+                        },
                         "values": {
                             "type": "object"
                         }
