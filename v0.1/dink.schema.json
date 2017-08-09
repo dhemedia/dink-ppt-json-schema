@@ -1342,6 +1342,9 @@
                         "input": {
                             "type": "string"
                         },
+                        "default": {
+                            "type": "string"
+                        },
                         "values": {
                             "type": "object"
                         }
