@@ -1315,9 +1315,11 @@
                             "$ref": "#/attributes/userData"
                         },
                         "function": {
+                            "description": "mathematical expression used to be calculated. ex: A * B",
                             "type": "string"
                         },
                         "inputs": {
+                            "description": "key value object which maps the variable in the function to be replaced with the corresponding path",
                             "type": "object"
                         }
                     },
@@ -1340,16 +1342,19 @@
                             "$ref": "#/attributes/userData"
                         },
                         "input": {
+                            "description": "the path of the field used as input for the converter",
                             "type": "string"
                         },
                         "default": {
+                            "description": "default key of value used when there is no value from input",
                             "type": "string"
                         },
                         "values": {
+                            "description": "key value object which maps the input value to a string for display purposes",
                             "type": "object"
                         }
                     },
-                    "required": ["userData", "values"]
+                    "required": ["userData", "input", "default", "values"]
                 }
             },
             "required": ["type", "data"]
