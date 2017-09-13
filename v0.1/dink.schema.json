@@ -1349,6 +1349,10 @@
                             "description": "default key of value used when there is no value from input",
                             "type": "string"
                         },
+                        "range": {
+                            "description": "if true, the interval between one key and other will also shown a value",
+                            "type": "boolean"
+                        },
                         "values": {
                             "description": "key value object which maps the input value to a string for display purposes",
                             "type": "object"
