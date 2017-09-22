@@ -174,7 +174,7 @@
                     "type": "integer"
                 }
             },
-            "required": []
+            "required": ["fontSize", "fontFamily", "foregroundColor", "backgroundColor"]
         },
         "userData": {
             "description": "User data, used by dynamicValue to know the path of the component",
