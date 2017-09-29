@@ -123,6 +123,12 @@
             "description": "Basic style properties",
             "type": "object",
             "properties": {
+                "width": {
+                    "type": "number"
+                },
+                "height": {
+                    "type": "number"
+                },
                 "fontSize": {
                     "type": "number"
                 },
@@ -404,9 +410,22 @@
                                     "description": "the background color of the selected value",
                                     "type": "string",
                                     "pattern": "^#[0-9a-fA-F]{6}$"
+                                },
+                                "handlerHeight": {
+                                    "description": "the height of slider's handler in pixels",
+                                    "type": "number"
+                                },
+                                "handlerOffsetTop": {
+                                    "description": "the offset top of the slider's handler",
+                                    "type": "number"
+                                },
+                                "borderColor": {
+                                    "description": "the color of the slider's items border",
+                                    "type": "string",
+                                    "pattern": "^#[0-9a-fA-F]{6}$"
                                 }
                             },
-                            "required": ["selectedForegroundColor", "selectedBackgroundColor"]
+                            "required": ["height", "selectedForegroundColor", "selectedBackgroundColor", "handlerHeight", "handlerOffsetTop", "borderColor"]
                         }]
                     }
                 },
