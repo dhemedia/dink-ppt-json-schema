@@ -1381,6 +1381,46 @@
                 }
             },
             "required": ["type", "data"]
+        },
+        "dragItem": {
+            "description": "dragItem is part of dragAndDrop magjet",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["dragItem"]
+                    },
+                    "src": {
+                        "description": "the url of a image if necessary",
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "userData": {
+                                "$ref": "#/attributes/userData"
+                            }
+                        },
+                        "required": ["userData"]
+                    },
+                    "style": {
+                        "allOf": [{
+                            "$ref": "#/attributes/basicStyle"
+                        }, {
+                            "properties": {
+                                "tagColor": {
+                                    "description": "the color of the tag of a dragItem",
+                                    "type": "string",
+                                    "pattern": "^#[0-9a-fA-F]{6}$"
+                                }
+                            }
+                        }]
+                    }
+                },
+                "required": ["type", "data", "style"]
+            }]
         }
     },
     "definitions": {
@@ -1449,6 +1489,8 @@
                             "$ref": "#/components/calculation"
                         }, {
                             "$ref": "#/components/converter"
+                        }, {
+                            "$ref": "#/components/dragItem"
                         }]
                     }
                 }
