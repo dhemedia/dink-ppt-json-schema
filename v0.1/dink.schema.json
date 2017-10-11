@@ -178,9 +178,13 @@
                 },
                 "paddingRight": {
                     "type": "integer"
+                },
+                "borderColor": {
+                    "description": "the color of the border",
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
                 }
-            },
-            "required": ["fontSize", "fontFamily", "foregroundColor", "backgroundColor"]
+            }
         },
         "userData": {
             "description": "User data, used by dynamicValue to know the path of the component",
@@ -418,14 +422,9 @@
                                 "handlerOffsetTop": {
                                     "description": "the offset top of the slider's handler",
                                     "type": "number"
-                                },
-                                "borderColor": {
-                                    "description": "the color of the slider's items border",
-                                    "type": "string",
-                                    "pattern": "^#[0-9a-fA-F]{6}$"
                                 }
                             },
-                            "required": ["height", "selectedForegroundColor", "selectedBackgroundColor", "handlerHeight", "handlerOffsetTop", "borderColor"]
+                            "required": ["fontSize", "fontFamily", "foregroundColor", "backgroundColor", "height", "borderColor", "selectedForegroundColor", "selectedBackgroundColor", "handlerHeight", "handlerOffsetTop"]
                         }]
                     }
                 },
@@ -1421,6 +1420,44 @@
                 },
                 "required": ["type", "data", "style"]
             }]
+        },
+        "dropZone": {
+            "description": "dropZone is part of dragAndDrop magjet",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["dropZone"]
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "userData": {
+                                "$ref": "#/attributes/userData"
+                            },
+                            "match": {
+                                "type": "string",
+                                "description": "the path of the correct dragItem"
+                            },
+                            "value": {
+                                "type": "string",
+                                "description": "the value of the result if matched with the correspondent dragItem"
+                            }
+                        },
+                        "required": ["userData", "match", "value"]
+                    },
+                    "style": {
+                        "allOf": [{
+                            "$ref": "#/attributes/basicStyle"
+                        }, {
+                            "required": ["borderColor"]
+                        }]
+                    }
+                },
+                "required": ["type", "data", "style"]
+            }]
         }
     },
     "definitions": {
@@ -1491,6 +1528,8 @@
                             "$ref": "#/components/converter"
                         }, {
                             "$ref": "#/components/dragItem"
+                        }, {
+                            "$ref": "#/components/dropZone"
                         }]
                     }
                 }
