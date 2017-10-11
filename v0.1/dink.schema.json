@@ -1458,6 +1458,33 @@
                 },
                 "required": ["type", "data", "style"]
             }]
+        },
+        "dragAndDrop": {
+            "description": "dragAndDrop magjet",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["dragAndDrop"]
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "userData": {
+                            "$ref": "#/attributes/userData"
+                        },
+                        "dropzones": {
+                            "type": "array",
+                            "description": "the path of the related dropZones",
+                            "minItems": 1,
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": ["userData", "dropzones"]
+                }
+            },
+            "required": ["type", "data"]
         }
     },
     "definitions": {
@@ -1530,6 +1557,8 @@
                             "$ref": "#/components/dragItem"
                         }, {
                             "$ref": "#/components/dropZone"
+                        }, {
+                            "$ref": "#/components/dragAndDrop"
                         }]
                     }
                 }
