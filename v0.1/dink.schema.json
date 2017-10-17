@@ -1406,7 +1406,7 @@
                                 "description": "the value of the dragItem"
                             }
                         },
-                        "required": ["userData"]
+                        "required": ["userData", "value"]
                     },
                     "style": {
                         "allOf": [{
@@ -1489,7 +1489,7 @@
                             }
                         }
                     },
-                    "required": ["userData", "dropzones"]
+                    "required": ["userData", "dropzones", "dragitems"]
                 }
             },
             "required": ["type", "data"]
