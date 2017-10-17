@@ -1400,6 +1400,10 @@
                         "properties": {
                             "userData": {
                                 "$ref": "#/attributes/userData"
+                            },
+                            "value": {
+                                "type": "string",
+                                "description": "the value of the dragItem"
                             }
                         },
                         "required": ["userData"]
@@ -1439,14 +1443,10 @@
                             },
                             "match": {
                                 "type": "string",
-                                "description": "the path of the correct dragItem"
-                            },
-                            "value": {
-                                "type": "string",
-                                "description": "the value of the result if matched with the correspondent dragItem"
+                                "description": "the path of the correct dragItem, when necessary"
                             }
                         },
-                        "required": ["userData", "match", "value"]
+                        "required": ["userData"]
                     },
                     "style": {
                         "allOf": [{
@@ -1475,6 +1475,14 @@
                         "dropzones": {
                             "type": "array",
                             "description": "the path of the related dropZones",
+                            "minItems": 1,
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "dragitems": {
+                            "type": "array",
+                            "description": "the path of the related dragItems",
                             "minItems": 1,
                             "items": {
                                 "type": "string"
