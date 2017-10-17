@@ -1398,15 +1398,12 @@
                     "data": {
                         "type": "object",
                         "properties": {
-                            "userData": {
-                                "$ref": "#/attributes/userData"
-                            },
                             "value": {
                                 "type": "string",
                                 "description": "the value of the dragItem"
                             }
                         },
-                        "required": ["userData", "value"]
+                        "required": ["value"]
                     },
                     "style": {
                         "allOf": [{
@@ -1438,15 +1435,11 @@
                     "data": {
                         "type": "object",
                         "properties": {
-                            "userData": {
-                                "$ref": "#/attributes/userData"
-                            },
                             "match": {
                                 "type": "string",
                                 "description": "the path of the correct dragItem, when necessary"
                             }
-                        },
-                        "required": ["userData"]
+                        }
                     },
                     "style": {
                         "allOf": [{
@@ -1471,28 +1464,24 @@
                     "properties": {
                         "userData": {
                             "$ref": "#/attributes/userData"
-                        },
-                        "dropzones": {
-                            "type": "array",
-                            "description": "the path of the related dropZones",
-                            "minItems": 1,
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "dragitems": {
-                            "type": "array",
-                            "description": "the path of the related dragItems",
-                            "minItems": 1,
-                            "items": {
-                                "type": "string"
-                            }
                         }
                     },
-                    "required": ["userData", "dropzones", "dragitems"]
+                    "required": ["userData"]
+                },
+                "submagjets": {
+                    "type": "array",
+                    "description": "a dropzone or dragitem object",
+                    "minItems": 1,
+                    "items": {
+                        "oneOf": [{
+                            "$ref": "#/components/dragItem"
+                        }, {
+                            "$ref": "#/components/dropZone"
+                        }]
+                    }
                 }
             },
-            "required": ["type", "data"]
+            "required": ["type", "data", "submagjets"]
         }
     },
     "definitions": {
@@ -1561,10 +1550,6 @@
                             "$ref": "#/components/calculation"
                         }, {
                             "$ref": "#/components/converter"
-                        }, {
-                            "$ref": "#/components/dragItem"
-                        }, {
-                            "$ref": "#/components/dropZone"
                         }, {
                             "$ref": "#/components/dragAndDrop"
                         }]
