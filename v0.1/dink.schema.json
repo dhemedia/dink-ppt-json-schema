@@ -1432,15 +1432,6 @@
                         "type": "string",
                         "enum": ["dropZone"]
                     },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "match": {
-                                "type": "string",
-                                "description": "the path of the correct dragItem, when necessary"
-                            }
-                        }
-                    },
                     "style": {
                         "allOf": [{
                             "$ref": "#/attributes/basicStyle"
@@ -1449,7 +1440,7 @@
                         }]
                     }
                 },
-                "required": ["type", "data", "style"]
+                "required": ["type", "style"]
             }]
         },
         "dragAndDrop": {
@@ -1468,20 +1459,24 @@
                     },
                     "required": ["userData"]
                 },
-                "submagjets": {
+                "dragitems": {
                     "type": "array",
-                    "description": "a dropzone or dragitem object",
+                    "description": "the list of dragItems",
                     "minItems": 1,
                     "items": {
-                        "oneOf": [{
-                            "$ref": "#/components/dragItem"
-                        }, {
-                            "$ref": "#/components/dropZone"
-                        }]
+                        "$ref": "#/components/dragItem"
+                    }
+                },
+                "dropzones": {
+                    "type": "array",
+                    "description": "the list of dropZones",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/components/dropZone"
                     }
                 }
             },
-            "required": ["type", "data", "submagjets"]
+            "required": ["type", "data", "dragitems", "dropzones"]
         }
     },
     "definitions": {
@@ -1573,9 +1568,7 @@
             "description": "Pages of the publication",
             "type": "array",
             "items": {
-                "oneOf": [{
-                    "$ref": "#/definitions/story"
-                }]
+                "$ref": "#/definitions/story"
             }
         }
     },
