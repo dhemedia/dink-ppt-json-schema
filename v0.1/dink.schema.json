@@ -178,9 +178,13 @@
                 },
                 "paddingRight": {
                     "type": "integer"
+                },
+                "borderColor": {
+                    "description": "the color of the border",
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
                 }
-            },
-            "required": ["fontSize", "fontFamily", "foregroundColor", "backgroundColor"]
+            }
         },
         "userData": {
             "description": "User data, used by dynamicValue to know the path of the component",
@@ -418,14 +422,9 @@
                                 "handlerOffsetTop": {
                                     "description": "the offset top of the slider's handler",
                                     "type": "number"
-                                },
-                                "borderColor": {
-                                    "description": "the color of the slider's items border",
-                                    "type": "string",
-                                    "pattern": "^#[0-9a-fA-F]{6}$"
                                 }
                             },
-                            "required": ["height", "selectedForegroundColor", "selectedBackgroundColor", "handlerHeight", "handlerOffsetTop", "borderColor"]
+                            "required": ["fontSize", "fontFamily", "foregroundColor", "backgroundColor", "height", "borderColor", "selectedForegroundColor", "selectedBackgroundColor", "handlerHeight", "handlerOffsetTop"]
                         }]
                     }
                 },
@@ -1381,6 +1380,103 @@
                 }
             },
             "required": ["type", "data"]
+        },
+        "dragItem": {
+            "description": "dragItem is part of dragAndDrop magjet",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["dragItem"]
+                    },
+                    "src": {
+                        "description": "the url of a image if necessary",
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "value": {
+                                "type": "string",
+                                "description": "the value of the dragItem"
+                            }
+                        },
+                        "required": ["value"]
+                    },
+                    "style": {
+                        "allOf": [{
+                            "$ref": "#/attributes/basicStyle"
+                        }, {
+                            "properties": {
+                                "tagColor": {
+                                    "description": "the color of the tag of a dragItem",
+                                    "type": "string",
+                                    "pattern": "^#[0-9a-fA-F]{6}$"
+                                }
+                            }
+                        }]
+                    }
+                },
+                "required": ["type", "data", "style"]
+            }]
+        },
+        "dropZone": {
+            "description": "dropZone is part of dragAndDrop magjet",
+            "allOf": [{
+                "$ref": "#/components/magjet"
+            }, {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["dropZone"]
+                    },
+                    "style": {
+                        "allOf": [{
+                            "$ref": "#/attributes/basicStyle"
+                        }, {
+                            "required": ["borderColor"]
+                        }]
+                    }
+                },
+                "required": ["type", "style"]
+            }]
+        },
+        "dragAndDrop": {
+            "description": "dragAndDrop magjet",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["dragAndDrop"]
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "userData": {
+                            "$ref": "#/attributes/userData"
+                        }
+                    },
+                    "required": ["userData"]
+                },
+                "dragitems": {
+                    "type": "array",
+                    "description": "the list of dragItems",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/components/dragItem"
+                    }
+                },
+                "dropzones": {
+                    "type": "array",
+                    "description": "the list of dropZones",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/components/dropZone"
+                    }
+                }
+            },
+            "required": ["type", "data", "dragitems", "dropzones"]
         }
     },
     "definitions": {
@@ -1449,6 +1545,8 @@
                             "$ref": "#/components/calculation"
                         }, {
                             "$ref": "#/components/converter"
+                        }, {
+                            "$ref": "#/components/dragAndDrop"
                         }]
                     }
                 }
@@ -1470,9 +1568,7 @@
             "description": "Pages of the publication",
             "type": "array",
             "items": {
-                "oneOf": [{
-                    "$ref": "#/definitions/story"
-                }]
+                "$ref": "#/definitions/story"
             }
         }
     },
