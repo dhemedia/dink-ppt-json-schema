@@ -733,6 +733,10 @@
                                     },
                                     "required": ["top", "left", "type", "radius", "path", "name", "value"]
                                 }
+                            },
+                            "singleAnswer": {
+                                "description": "determines if the answer should be just one item",
+                                "type": "boolean"
                             }
                         },
                         "required": ["userData", "image", "areas"]
