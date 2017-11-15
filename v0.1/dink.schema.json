@@ -873,6 +873,10 @@
                                 "description": "key of the Google Drive spreadsheet",
                                 "type": "string"
                             },
+                            "spreadsheetOutput": {
+                                "description": "key of the Google Drive spreadsheet to which to write updates",
+                                "type": "string"
+                            },
                             "displayColumn": {
                                 "description": "field shown as label in dropdown",
                                 "type": "string"
