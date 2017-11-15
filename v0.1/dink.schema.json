@@ -902,6 +902,11 @@
                                         "value": {
                                             "description": "field/column value",
                                             "type": "string"
+                                        },
+                                        "operator": {
+                                            "description": "the query operator",
+                                            "type": "string",
+                                            "enum": ["AND", "OR"]
                                         }
                                     }
                                 }
