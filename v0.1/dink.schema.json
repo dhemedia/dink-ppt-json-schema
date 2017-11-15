@@ -1,1589 +1,1601 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "d!nk Publication Structure",
-    "description": "The json structure of data created by the d!nk Powerpoint plugin",
-    "attributes": {
-        "size": {
-            "description": "Display size info",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "d!nk Publication Structure",
+  "description": "The json structure of data created by the d!nk Powerpoint plugin",
+  "attributes": {
+    "size": {
+      "description": "Display size info",
+      "type": "object",
+      "properties": {
+        "landscape": {
+          "type": "object",
+          "properties": {
+            "width": {
+              "description": "Landscape width",
+              "type": "number"
+            },
+            "height": {
+              "description": "Landscape height",
+              "type": "number"
+            }
+          }
+        },
+        "portrait": {
+          "type": "object",
+          "properties": {
+            "width": {
+              "description": "Portrait width",
+              "type": "number"
+            },
+            "height": {
+              "description": "Portrait height",
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "position": {
+      "description": "Position info",
+      "type": "object",
+      "properties": {
+        "landscape": {
+          "type": "object",
+          "properties": {
+            "top": {
+              "description": "Y coordinate",
+              "type": "number"
+            },
+            "left": {
+              "description": "X coordinate",
+              "type": "number"
+            }
+          }
+        },
+        "portrait": {
+          "type": "object",
+          "properties": {
+            "top": {
+              "description": "Y coordinate",
+              "type": "number"
+            },
+            "left": {
+              "description": "X coordinate",
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "navigation": {
+      "description": "Navigation info",
+      "type": "object",
+      "properties": {
+        "previous": {
+          "description": "Determines if user can go back to previous page by sliding",
+          "type": "boolean"
+        },
+        "next": {
+          "description": "Determines if user can go to next page by sliding",
+          "type": "boolean"
+        }
+      },
+      "required": ["next", "previous"]
+    },
+    "visibility": {
+      "description": "Visibility info",
+      "type": "object",
+      "properties": {
+        "portrait": {
+          "description": "Determines if component is visible in portrait mode",
+          "type": "boolean"
+        },
+        "landscape": {
+          "description": "Determines if component is visible in landscape mode",
+          "type": "boolean"
+        }
+      },
+      "required": ["portrait", "landscape"]
+    },
+    "css": {
+      "description": "CSS rules",
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
             "type": "object",
             "properties": {
-                "landscape": {
-                    "type": "object",
-                    "properties": {
-                        "width": {
-                            "description": "Landscape width",
-                            "type": "number"
-                        },
-                        "height": {
-                            "description": "Landscape height",
-                            "type": "number"
-                        }
-                    }
-                },
-                "portrait": {
-                    "type": "object",
-                    "properties": {
-                        "width": {
-                            "description": "Portrait width",
-                            "type": "number"
-                        },
-                        "height": {
-                            "description": "Portrait height",
-                            "type": "number"
-                        }
-                    }
-                }
-            }
+              "selector": {
+                "type": "string"
+              },
+              "style": {
+                "type": "object"
+              }
+            },
+            "required": ["selector", "style"]
+          }
+        }
+      },
+      "required": ["rules"]
+    },
+    "basicStyle": {
+      "description": "Basic style properties",
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "fontSize": {
+          "type": "number"
+        },
+        "fontFamily": {
+          "type": "string"
+        },
+        "fontWeight": {
+          "type": "string",
+          "enum": ["bold", "bolder", "lighter", "normal"]
+        },
+        "foregroundColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "backgroundColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "textAlignment": {
+          "type": "string",
+          "enum": ["left", "center", "justify", "right"]
+        },
+        "textDecoration": {
+          "type": "string",
+          "enum": ["overline", "line-through", "underline"]
+        },
+        "marginBottom": {
+          "type": "integer"
+        },
+        "marginTop": {
+          "type": "integer"
+        },
+        "marginLeft": {
+          "type": "integer"
+        },
+        "marginRight": {
+          "type": "integer"
+        },
+        "paddingTop": {
+          "type": "integer"
+        },
+        "paddingBottom": {
+          "type": "integer"
+        },
+        "paddingLeft": {
+          "type": "integer"
+        },
+        "paddingRight": {
+          "type": "integer"
+        },
+        "borderColor": {
+          "description": "the color of the border",
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        }
+      }
+    },
+    "userData": {
+      "description": "User data, used by dynamicValue to know the path of the component",
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["path", "name"]
+    },
+    "propertyEnabled": {
+      "description": "structure often used to disable/enable property",
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": ["enabled"]
+    },
+    "storyLinkData": {
+      "description": "structure used to provide data for story links",
+      "type": "object",
+      "properties": {
+        "story": {
+          "description": "the page the user wants to open, can be an identifier or a special string. Forward/Back means go to the next/previous page in your history",
+          "type": "string",
+          "pattern": "\\b(next|previous|back|forward|source|no|^[0-9]*$)\\b"
+        },
+        "animation": {
+          "description": "the desired page transition effect",
+          "type": "string",
+          "default": "none",
+          "enum": ["none", "slideright", "slideleft", "pop", "fade", "slideup", "slidedown"]
+        }
+      },
+      "required": ["story"]
+    },
+    "gradientData": {
+      "description": "structure used to provide data for gradient",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "the type of gradient, only linear for now",
+          "type": "string",
+          "enum": ["linear"]
+        },
+        "direction": {
+          "description": "the direction of the gradient",
+          "type": "string",
+          "default": "down",
+          "enum": ["left", "right", "down", "up"]
+        },
+        "colors": {
+          "description": "the color stops of the gradient",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          }
+        }
+      },
+      "required": ["type", "direction", "colors"]
+    }
+  },
+  "components": {
+    "magjet": {
+      "description": "Basic magjet",
+      "type": "object",
+      "properties": {
+        "size": {
+          "$ref": "#/attributes/size"
         },
         "position": {
-            "description": "Position info",
-            "type": "object",
-            "properties": {
-                "landscape": {
-                    "type": "object",
-                    "properties": {
-                        "top": {
-                            "description": "Y coordinate",
-                            "type": "number"
-                        },
-                        "left": {
-                            "description": "X coordinate",
-                            "type": "number"
-                        }
-                    }
-                },
-                "portrait": {
-                    "type": "object",
-                    "properties": {
-                        "top": {
-                            "description": "Y coordinate",
-                            "type": "number"
-                        },
-                        "left": {
-                            "description": "X coordinate",
-                            "type": "number"
-                        }
-                    }
-                }
-            }
-        },
-        "navigation": {
-            "description": "Navigation info",
-            "type": "object",
-            "properties": {
-                "previous": {
-                    "description": "Determines if user can go back to previous page by sliding",
-                    "type": "boolean"
-                },
-                "next": {
-                    "description": "Determines if user can go to next page by sliding",
-                    "type": "boolean"
-                }
-            },
-            "required": ["next", "previous"]
+          "$ref": "#/attributes/position"
         },
         "visibility": {
-            "description": "Visibility info",
-            "type": "object",
-            "properties": {
-                "portrait": {
-                    "description": "Determines if component is visible in portrait mode",
-                    "type": "boolean"
-                },
-                "landscape": {
-                    "description": "Determines if component is visible in landscape mode",
-                    "type": "boolean"
-                }
-            },
-            "required": ["portrait", "landscape"]
-        },
-        "css": {
-            "description": "CSS rules",
-            "type": "object",
-            "properties": {
-                "rules": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "selector": {
-                                "type": "string"
-                            },
-                            "style": {
-                                "type": "object"
-                            }
-                        },
-                        "required": ["selector", "style"]
-                    }
-                }
-            },
-            "required": ["rules"]
-        },
-        "basicStyle": {
-            "description": "Basic style properties",
-            "type": "object",
-            "properties": {
-                "width": {
-                    "type": "number"
-                },
-                "height": {
-                    "type": "number"
-                },
-                "fontSize": {
-                    "type": "number"
-                },
-                "fontFamily": {
-                    "type": "string"
-                },
-                "fontWeight": {
-                    "type": "string",
-                    "enum": ["bold", "bolder", "lighter", "normal"]
-                },
-                "foregroundColor": {
-                    "type": "string",
-                    "pattern": "^#[0-9a-fA-F]{6}$"
-                },
-                "backgroundColor": {
-                    "type": "string",
-                    "pattern": "^#[0-9a-fA-F]{6}$"
-                },
-                "textAlignment": {
-                    "type": "string",
-                    "enum": ["left", "center", "justify", "right"]
-                },
-                "textDecoration": {
-                    "type": "string",
-                    "enum": ["overline", "line-through", "underline"]
-                },
-                "marginBottom": {
-                    "type": "integer"
-                },
-                "marginTop": {
-                    "type": "integer"
-                },
-                "marginLeft": {
-                    "type": "integer"
-                },
-                "marginRight": {
-                    "type": "integer"
-                },
-                "paddingTop": {
-                    "type": "integer"
-                },
-                "paddingBottom": {
-                    "type": "integer"
-                },
-                "paddingLeft": {
-                    "type": "integer"
-                },
-                "paddingRight": {
-                    "type": "integer"
-                },
-                "borderColor": {
-                    "description": "the color of the border",
-                    "type": "string",
-                    "pattern": "^#[0-9a-fA-F]{6}$"
-                }
-            }
-        },
-        "userData": {
-            "description": "User data, used by dynamicValue to know the path of the component",
-            "type": "object",
-            "properties": {
-                "path": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": ["path", "name"]
-        },
-        "propertyEnabled": {
-            "description": "structure often used to disable/enable property",
-            "type": "object",
-            "properties": {
-                "enabled": {
-                    "type": "boolean"
-                }
-            },
-            "required": ["enabled"]
-        },
-        "storyLinkData": {
-            "description": "structure used to provide data for story links",
-            "type": "object",
-            "properties": {
-                "story": {
-                    "description": "the page the user wants to open, can be an identifier or a special string. Forward/Back means go to the next/previous page in your history",
-                    "type": "string",
-                    "pattern": "\\b(next|previous|back|forward|source|no|^[0-9]*$)\\b"
-                },
-                "animation": {
-                    "description": "the desired page transition effect",
-                    "type": "string",
-                    "default": "none",
-                    "enum": ["none", "slideright", "slideleft", "pop", "fade", "slideup", "slidedown"]
-                }
-            },
-            "required": ["story"]
-        },
-        "gradientData": {
-            "description": "structure used to provide data for gradient",
-            "type": "object",
-            "properties": {
-                "type": {
-                    "description": "the type of gradient, only linear for now",
-                    "type": "string",
-                    "enum": ["linear"]
-                },
-                "direction": {
-                    "description": "the direction of the gradient",
-                    "type": "string",
-                    "default": "down",
-                    "enum": ["left", "right", "down", "up"]
-                },
-                "colors": {
-                    "description": "the color stops of the gradient",
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "pattern": "^#[0-9a-fA-F]{6}$"
-                    }
-                }
-            },
-            "required": ["type", "direction", "colors"]
+          "$ref": "#/attributes/visibility"
         }
+      },
+      "required": ["size", "position", "visibility"]
     },
-    "components": {
-        "magjet": {
-            "description": "Basic magjet",
-            "type": "object",
-            "properties": {
-                "size": {
-                    "$ref": "#/attributes/size"
-                },
-                "position": {
-                    "$ref": "#/attributes/position"
-                },
-                "visibility": {
-                    "$ref": "#/attributes/visibility"
-                }
-            },
-            "required": ["size", "position", "visibility"]
-        },
-        "image": {
-            "description": "Image component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["image"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "width": {
-                                "type": "number"
-                            },
-                            "height": {
-                                "type": "number"
-                            },
-                            "src": {
-                                "type": "string"
-                            }
-                        },
-                        "required": ["width", "height", "src"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "advanced": {
-            "description": "Advanced component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["advanced"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "js": {
-                                "type": "string"
-                            }
-                        },
-                        "required": ["js"]
-                    },
-                    "assets": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "required": ["type", "data", "assets"]
-            }]
-        },
-        "text": {
-            "description": "Text component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["text"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "content": {
-                                "type": "string"
-                            }
-                        },
-                        "required": ["content"]
-                    },
-                    "css": {
-                        "$ref": "#/attributes/css"
-                    }
-                },
-                "required": ["type", "data", "css"]
-            }]
-        },
-        "slider": {
-            "description": "Slider component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["slider"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "userData": {
-                                "$ref": "#/attributes/userData"
-                            },
-                            "count": {
-                                "type": "number"
-                            },
-                            "total": {
-                                "type": "boolean"
-                            },
-                            "handle": {
-                                "type": "object",
-                                "properties": {
-                                    "width": {
-                                        "type": "number"
-                                    }
-                                }
-                            },
-                            "values": {
-                                "type": "array"
-                            },
-                            "default": {
-                                "type": "string"
-                            }
-                        },
-                        "required": ["userData", "count", "total", "handle", "values", "default"]
-                    },
-                    "css": {
-                        "$ref": "#/attributes/css"
-                    },
-                    "style": {
-                        "allOf": [{
-                            "$ref": "#/attributes/basicStyle"
-                        }, {
-                            "properties": {
-                                "backgroundGradient": {
-                                    "$ref": "#/attributes/gradientData"
-                                },
-                                "selectedForegroundColor": {
-                                    "description": "the color of the selected value",
-                                    "type": "string",
-                                    "pattern": "^#[0-9a-fA-F]{6}$"
-                                },
-                                "selectedBackgroundColor": {
-                                    "description": "the background color of the selected value",
-                                    "type": "string",
-                                    "pattern": "^#[0-9a-fA-F]{6}$"
-                                },
-                                "handlerHeight": {
-                                    "description": "the height of slider's handler in pixels",
-                                    "type": "number"
-                                },
-                                "handlerOffsetTop": {
-                                    "description": "the offset top of the slider's handler",
-                                    "type": "number"
-                                }
-                            },
-                            "required": ["fontSize", "fontFamily", "foregroundColor", "backgroundColor", "height", "borderColor", "selectedForegroundColor", "selectedBackgroundColor", "handlerHeight", "handlerOffsetTop"]
-                        }]
-                    }
-                },
-                "required": ["type", "data", "css"]
-            }]
-        },
-        "webLink": {
-            "description": "webLink component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["webLink"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "src": {
-                                "description": "the url we need to open",
-                                "type": "string"
-                            }
-                        },
-                        "required": ["src"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "storyLink": {
-            "description": "storyLink component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["storyLink"]
-                    },
-                    "data": {
-                        "$ref": "#/attributes/storyLinkData"
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "pdfLink": {
-            "description": "pdfLink component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["pdfLink"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "src": {
-                                "description": "the source of the pdf document",
-                                "type": "string"
-                            },
-                            "startPage": {
-                                "type": "number"
-                            },
-                            "externalApp": {
-                                "type": "boolean"
-                            }
-                        },
-                        "required": ["src", "startPage", "externalApp"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "refreshLink": {
-            "description": "refreshLink component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["refreshLink"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "refresh_target": {
-                                "description": "page to show after the publication has been refreshed",
-                                "type": "string",
-                                "pattern": "(^$|(^S\\d*$))"
-                            },
-                            "timer": {
-                                "description": "a timer starts counting when there is no activity",
-                                "type": "string",
-                                "enum": ["yes", "no"]
-                            },
-                            "milli": {
-                                "description": "number of milliseconds after which to refresh, used by timer",
-                                "type": "string",
-                                "pattern": "^[0-9]*$"
-                            }
-                        },
-                        "required": ["refresh_target", "timer", "milli"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "publicationLink": {
-            "description": "publicationLink component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["publicationLink"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "publicationName": {
-                                "description": "the name of the publication the user wants to open",
-                                "type": "string"
-                            },
-                            "story": {
-                                "description": "the page that should be shown when opening the publication",
-                                "type": "string",
-                                "pattern": "^[0-9]*$"
-                            }
-                        },
-                        "required": ["publicationName", "story"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "kioskLink": {
-            "description": "kioskLink component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["kioskLink"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "kioskName": {
-                                "description": "the name of the kiosk the user wants to open",
-                                "type": "string"
-                            }
-                        },
-                        "required": ["kioskName"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "pdfSelect": {
-            "description": "pdfSelect component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["pdfSelect"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "files": {
-                                "description": "the name of pdf files you can select",
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "required": ["files"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "signature": {
-            "description": "signature component, using a canvas to allow users to sign a publication",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["signature"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "userData": {
-                                "$ref": "#/attributes/userData"
-                            },
-                            "strokeColor": {
-                                "type": "string"
-                            },
-                            "lineWidth": {
-                                "type": "number"
-                            },
-                            "buttonLabel": {
-                                "description": "the label appearing on the button that can be used to clear the signature canvas",
-                                "type": "string"
-                            },
-                            "buttonPosition": {
-                                "description": "the position of the button - relative to the canvas - that can be used to clear the signature canvas",
-                                "type": "string",
-                                "enum": ["top left", "top right", "bottom right", "bottom left"]
-                            }
-                        },
-                        "required": ["strokeColor", "lineWidth", "buttonLabel", "buttonPosition"]
-                    },
-                    "css": {
-                        "$ref": "#/attributes/css"
-                    }
-                },
-                "required": ["type", "data", "css"]
-            }]
-        },
-        "graphicSelect": {
-            "description": "graphicSelect component a.k.a. select hotzone, equivalent of html area element",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["graphicSelect"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "userData": {
-                                "$ref": "#/attributes/userData"
-                            },
-                            "image": {
-                                "description": "the background image",
-                                "type": "object",
-                                "properties": {
-                                    "src": {
-                                        "type": "string"
-                                    },
-                                    "width": {
-                                        "type": "number"
-                                    },
-                                    "height": {
-                                        "type": "number"
-                                    }
-                                },
-                                "required": ["src", "width", "height"]
-                            },
-                            "areas": {
-                                "description": "specific zones/areas that can be clicked",
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "top": {
-                                            "description": "y-position relative to the hotzone magjet",
-                                            "type": "number"
-                                        },
-                                        "left": {
-                                            "description": "x-position relative to the hotzone magjet",
-                                            "type": "number"
-                                        },
-                                        "type": {
-                                            "description": "shape of the clickable area",
-                                            "type": "string",
-                                            "enum": ["circle"]
-                                        },
-                                        "value": {
-                                            "description": "the value associated with this specific zone",
-                                            "type": "string"
-                                        },
-                                        "radius": {
-                                            "description": "radius of the circle, if 2 values are given they will determine the width and height of an ellipse",
-                                            "type": "array",
-                                            "items": {
-                                                "type": "number"
-                                            },
-                                            "minItems": 1,
-                                            "maxItems": 2
-                                        },
-                                        "path": {
-                                            "description": "same purpose as userData.path",
-                                            "type": "string"
-                                        },
-                                        "name": {
-                                            "description": "same purpose as userData.name",
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": ["top", "left", "type", "radius", "path", "name", "value"]
-                                }
-                            },
-                            "singleAnswer": {
-                                "description": "determines if the answer should be just one item",
-                                "type": "boolean"
-                            }
-                        },
-                        "required": ["userData", "image", "areas"]
-                    },
-                    "css": {
-                        "$ref": "#/attributes/css"
-                    }
-                },
-                "required": ["type", "data", "css"]
-            }]
-        },
-        "mail": {
-            "description": "@deprecated. Mail component, now moved to submit button configuration",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["mail"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "enum": ["client", "server"]
-                            },
-                            "client": {
-                                "type": "object",
-                                "properties": {
-                                    "to": {
-                                        "type": "string"
-                                    },
-                                    "cc": {
-                                        "type": "string"
-                                    },
-                                    "subject": {
-                                        "type": "string"
-                                    },
-                                    "body": {
-                                        "type": "string"
-                                    }
-                                },
-                                "required": ["to", "cc", "subject", "body"]
-                            },
-                            "server": {
-                                "type": "object",
-                                "properties": {
-                                    "to": {
-                                        "type": "string"
-                                    },
-                                    "cc": {
-                                        "type": "string"
-                                    },
-                                    "from": {
-                                        "type": "string"
-                                    },
-                                    "subject": {
-                                        "type": "string"
-                                    },
-                                    "replyTo": {
-                                        "type": "string"
-                                    },
-                                    "body": {
-                                        "type": "object",
-                                        "properties": {
-                                            "start": {
-                                                "type": "string"
-                                            },
-                                            "content": {
-                                                "type": "string"
-                                            },
-                                            "end": {
-                                                "type": "string"
-                                            }
-                                        },
-                                        "required": ["start", "content", "end"]
-                                    },
-                                    "user": {
-                                        "type": "object",
-                                        "properties": {
-                                            "to": {
-                                                "$ref": "#/attributes/propertyEnabled"
-                                            },
-                                            "from": {
-                                                "$ref": "#/attributes/propertyEnabled"
-                                            },
-                                            "subject": {
-                                                "$ref": "#/attributes/propertyEnabled"
-                                            },
-                                            "body": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "content": {
-                                                        "$ref": "#/attributes/propertyEnabled"
-                                                    }
-                                                },
-                                                "required": ["content"]
-                                            }
-                                        }
-                                    }
-                                },
-                                "required": ["to", "cc", "subject", "replyTo", "body", "user"]
-                            }
-                        },
-                        "required": ["type"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "dynamicValue": {
-            "description": "dynamicValue component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["dynamicValue"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "userData": {
-                                "$ref": "#/attributes/userData"
-                            },
-                            "enterprise": {
-                                "description": "key of the enterprise in data store",
-                                "type": "string"
-                            },
-                            "spreadsheet": {
-                                "description": "key of the Google Drive spreadsheet",
-                                "type": "string"
-                            },
-                            "spreadsheetOutput": {
-                                "description": "key of the Google Drive spreadsheet to which to write updates",
-                                "type": "string"
-                            },
-                            "displayColumn": {
-                                "description": "field shown as label in dropdown",
-                                "type": "string"
-                            },
-                            "useHistory": {
-                                "description": "determines if data should be stored for offline usage",
-                                "type": "boolean"
-                            },
-                            "showWarning": {
-                                "description": "show warning when new data is available",
-                                "type": "boolean"
-                            },
-                            "selectColumn": {
-                                "description": "fields and values that are used to build a query retrieving specific results",
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "name": {
-                                            "description": "field/column name",
-                                            "type": "string"
-                                        },
-                                        "value": {
-                                            "description": "field/column value",
-                                            "type": "string"
-                                        },
-                                        "operator": {
-                                            "description": "the query operator",
-                                            "type": "string",
-                                            "enum": ["AND", "OR"]
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "required": ["userData", "enterprise", "spreadsheet", "displayColumn", "useHistory", "showWarning", "selectColumn"]
-                    },
-                    "css": {
-                        "$ref": "#/attributes/css"
-                    }
-                },
-                "required": ["type", "data", "css"]
-            }]
-        },
-        "sheetRecord": {
-            "description": "sheetRecord component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["sheetRecord"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "userData": {
-                                "$ref": "#/attributes/userData"
-                            },
-                            "enterprise": {
-                                "description": "key of the enterprise in data store",
-                                "type": "string"
-                            },
-                            "spreadsheet": {
-                                "description": "key of the Google Drive spreadsheet",
-                                "type": "string"
-                            },
-                            "submitLabel": {
-                                "type": "string"
-                            },
-                            "columns": {
-                                "description": "columns and their values to be used for a new record/row in a spreadsheet",
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "column": {
-                                            "description": "field/column name",
-                                            "type": "string"
-                                        },
-                                        "input": {
-                                            "description": "field/column input value",
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "required": ["userData", "enterprise", "spreadsheet", "submitLabel", "columns"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "input": {
-            "description": "input component a.k.a. open question magjet",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["input"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "userData": {
-                                "$ref": "#/attributes/userData"
-                            },
-                            "type": {
-                                "type": "string",
-                                "enum": ["text", "number", "textarea", "date"]
-                            },
-                            "label": {
-                                "description": "the question being asked",
-                                "type": "string"
-                            },
-                            "default": {
-                                "description": "the default answer to the question",
-                                "type": "string"
-                            },
-                            "sheetInfo": {
-                                "column": {
-                                    "description": "the column/field value from the dynamicValue spreadsheet that should be displayed in this input field",
-                                    "type": "string"
-                                },
-                                "path": {
-                                    "description": "@deprecated. Use userData property values instead",
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "required": ["userData", "type", "label", "default"]
-                    },
-                    "css": {
-                        "$ref": "#/attributes/css"
-                    }
-                },
-                "required": ["type", "data", "css"]
-            }]
-        },
-        "inputValidator": {
-            "description": "inputValidator component maps to userinputvalidator magjet",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["inputValidator"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "collectorPath": {
-                                "type": "string"
-                            },
-                            "inputPaths": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "required": ["collectorPath", "inputPaths"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "inputCollector": {
-            "description": "inputCollector component maps to userinputcollector magjet",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["inputCollector"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "path": {
-                                "type": "string"
-                            },
-                            "allFieldsAreMandatory": {
-                                "type": "boolean"
-                            },
-                            "mandatoryFields": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            "internetConnectionRequired": {
-                                "type": "boolean"
-                            },
-                            "closePublicationAfterSubmit": {
-                                "type": "boolean"
-                            },
-                            "isReadOnly": {
-                                "description": "means the field values cannot be changed by the user when viewing the publication",
-                                "type": "boolean"
-                            },
-                            "resetOnSubmit": {
-                                "type": "boolean"
-                            },
-                            "messages": {
-                                "type": "object",
-                                "properties": {
-                                    "sending": {
-                                        "description": "message to display while sending data",
-                                        "type": "string"
-                                    },
-                                    "success": {
-                                        "type": "string"
-                                    }
-                                },
-                                "required": ["success"]
-                            },
-                            "pdf": {
-                                "type": "object",
-                                "properties": {
-                                    "generate": {
-                                        "anyOf": [{
-                                            "type": "object",
-                                            "properties": {
-                                                "prepend": {
-                                                    "type": "string"
-                                                },
-                                                "append": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }, {
-                                            "type": "boolean"
-                                        }]
-                                    },
-                                    "addToMicrosite": {
-                                        "type": "boolean"
-                                    },
-                                    "email": {
-                                        "type": "object",
-                                        "properties": {
-                                            "send": {
-                                                "type": "boolean"
-                                            },
-                                            "to": {
-                                                "description": "recipients of the mail",
-                                                "anyOf": [{
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    }
-                                                }, {
-                                                    "description": "single email address, can also be an empty string",
-                                                    "type": "string"
-                                                }]
-                                            },
-                                            "cc": {
-                                                "description": "recipients in cc of the mail",
-                                                "anyOf": [{
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    }
-                                                }, {
-                                                    "description": "single email address, can also be an empty string",
-                                                    "type": "string"
-                                                }]
-                                            },
-                                            "from": {
-                                                "type": "string"
-                                            },
-                                            "subject": {
-                                                "type": "string"
-                                            },
-                                            "body": {
-                                                "type": "string"
-                                            },
-                                            "path": {
-                                                "description": "@TODO: find out what this is about",
-                                                "type": "object"
-                                            }
-                                        },
-                                        "required": ["send", "to", "cc", "from", "subject", "body", "path"]
-                                    },
-                                    "drive": {
-                                        "type": "object",
-                                        "properties": {
-                                            "send": {
-                                                "type": "boolean"
-                                            }
-                                        }
-                                    }
-                                },
-                                "required": ["generate", "addToMicrosite", "email", "drive"]
-                            },
-                            "excel": {
-                                "type": "object",
-                                "properties": {
-                                    "send": {
-                                        "type": "boolean"
-                                    }
-                                },
-                                "required": ["send"]
-                            },
-                            "syncFileTransactions": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "notificationUrl": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": ["notificationUrl"]
-                                }
-                            }
-                        },
-                        "required": ["path", "allFieldsAreMandatory", "messages", "excel", "syncFileTransactions", "pdf"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "video": {
-            "description": "video component",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "size": {
-                        "$ref": "#/attributes/size"
-                    },
-                    "position": {
-                        "$ref": "#/attributes/position"
-                    },
-                    "visibility": {
-                        "$ref": "#/attributes/visibility"
-                    },
-                    "type": {
-                        "type": "string",
-                        "enum": ["video"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "src": {
-                                "type": "string"
-                            },
-                            "loop": {
-                                "type": "boolean"
-                            },
-                            "controls": {
-                                "type": "boolean"
-                            },
-                            "autoPlay": {
-                                "type": "boolean"
-                            },
-                            "image": {
-                                "description": "the poster image aka placeholder for this video",
-                                "type": "object",
-                                "properties": {
-                                    "width": {
-                                        "type": "number"
-                                    },
-                                    "height": {
-                                        "type": "number"
-                                    },
-                                    "src": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        },
-                        "required": ["src", "image"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "select": {
-            "description": "select component aka survey magjet",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["select"]
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "userData": {
-                                "$ref": "#/attributes/userData"
-                            },
-                            "type": {
-                                "description": "determines how the options should be displayed",
-                                "type": "string",
-                                "enum": ["checkbox", "radio", "list"]
-                            },
-                            "label": {
-                                "type": "string"
-                            },
-                            "bigTextFieldForInput": {
-                                "type": "boolean",
-                                "default": false
-                            },
-                            "sheetInfo": {
-                                "description": "optional property that retrieves available options from a spreadsheet",
-                                "column": {
-                                    "description": "the column/field values from the dynamicValue spreadsheet that should be displayed as options",
-                                    "type": "string"
-                                },
-                                "path": {
-                                    "type": "string"
-                                }
-                            },
-                            "options": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "label": {
-                                            "type": "string"
-                                        },
-                                        "value": {
-                                            "type": "string"
-                                        },
-                                        "editable": {
-                                            "type": "boolean"
-                                        },
-                                        "useTextarea": {
-                                            "type": "boolean",
-                                            "default": false
-                                        },
-                                        "storyLink": {
-                                            "$ref": "#/attributes/storyLinkData"
-                                        }
-                                    },
-                                    "required": ["label", "value", "editable"]
-                                }
-                            }
-                        },
-                        "required": ["userData", "type", "label", "options"]
-                    }
-                },
-                "required": ["type", "data"]
-            }]
-        },
-        "calculation": {
-            "description": "calculation component",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": ["calculation"]
-                },
-                "data": {
-                    "type": "object",
-                    "properties": {
-                        "userData": {
-                            "$ref": "#/attributes/userData"
-                        },
-                        "function": {
-                            "description": "mathematical expression used to be calculated. ex: A * B",
-                            "type": "string"
-                        },
-                        "inputs": {
-                            "description": "key value object which maps the variable in the function to be replaced with the corresponding path",
-                            "type": "object"
-                        }
-                    },
-                    "required": ["userData", "function", "inputs"]
-                }
-            },
-            "required": ["type", "data"]
-        },
-        "converter": {
-            "description": "converter component",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": ["converter"]
-                },
-                "data": {
-                    "type": "object",
-                    "properties": {
-                        "userData": {
-                            "$ref": "#/attributes/userData"
-                        },
-                        "input": {
-                            "description": "the path of the field used as input for the converter",
-                            "type": "string"
-                        },
-                        "default": {
-                            "description": "default key of value used when there is no value from input",
-                            "type": "string"
-                        },
-                        "range": {
-                            "description": "if true, the interval between one key and other will also shown a value",
-                            "type": "boolean"
-                        },
-                        "values": {
-                            "description": "key value object which maps the input value to a string for display purposes",
-                            "type": "object"
-                        }
-                    },
-                    "required": ["userData", "input", "default", "values"]
-                }
-            },
-            "required": ["type", "data"]
-        },
-        "dragItem": {
-            "description": "dragItem is part of dragAndDrop magjet",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["dragItem"]
-                    },
-                    "src": {
-                        "description": "the url of a image if necessary",
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "value": {
-                                "type": "string",
-                                "description": "the value of the dragItem"
-                            }
-                        },
-                        "required": ["value"]
-                    },
-                    "style": {
-                        "allOf": [{
-                            "$ref": "#/attributes/basicStyle"
-                        }, {
-                            "properties": {
-                                "tagColor": {
-                                    "description": "the color of the tag of a dragItem",
-                                    "type": "string",
-                                    "pattern": "^#[0-9a-fA-F]{6}$"
-                                }
-                            }
-                        }]
-                    }
-                },
-                "required": ["type", "data", "style"]
-            }]
-        },
-        "dropZone": {
-            "description": "dropZone is part of dragAndDrop magjet",
-            "allOf": [{
-                "$ref": "#/components/magjet"
-            }, {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["dropZone"]
-                    },
-                    "style": {
-                        "allOf": [{
-                            "$ref": "#/attributes/basicStyle"
-                        }, {
-                            "required": ["borderColor"]
-                        }]
-                    }
-                },
-                "required": ["type", "style"]
-            }]
-        },
-        "dragAndDrop": {
-            "description": "dragAndDrop magjet",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": ["dragAndDrop"]
-                },
-                "data": {
-                    "type": "object",
-                    "properties": {
-                        "userData": {
-                            "$ref": "#/attributes/userData"
-                        }
-                    },
-                    "required": ["userData"]
-                },
-                "dragitems": {
-                    "type": "array",
-                    "description": "the list of dragItems",
-                    "minItems": 1,
-                    "items": {
-                        "$ref": "#/components/dragItem"
-                    }
-                },
-                "dropzones": {
-                    "type": "array",
-                    "description": "the list of dropZones",
-                    "minItems": 1,
-                    "items": {
-                        "$ref": "#/components/dropZone"
-                    }
-                }
-            },
-            "required": ["type", "data", "dragitems", "dropzones"]
-        }
-    },
-    "definitions": {
-        "story": {
-            "description": "A page within a publication",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "pattern": "^[0-9]*$"
-                },
-                "slideId": {
-                    "type": "string",
-                    "pattern": "^[0-9]*$"
-                },
-                "navigation": {
-                    "$ref": "#/attributes/navigation"
-                },
-                "magjets": {
-                    "description": "Components of the story",
-                    "type": "array",
-                    "items": {
-                        "oneOf": [{
-                            "$ref": "#/components/image"
-                        }, {
-                            "$ref": "#/components/advanced"
-                        }, {
-                            "$ref": "#/components/slider"
-                        }, {
-                            "$ref": "#/components/webLink"
-                        }, {
-                            "$ref": "#/components/storyLink"
-                        }, {
-                            "$ref": "#/components/pdfLink"
-                        }, {
-                            "$ref": "#/components/refreshLink"
-                        }, {
-                            "$ref": "#/components/publicationLink"
-                        }, {
-                            "$ref": "#/components/kioskLink"
-                        }, {
-                            "$ref": "#/components/pdfSelect"
-                        }, {
-                            "$ref": "#/components/signature"
-                        }, {
-                            "$ref": "#/components/mail"
-                        }, {
-                            "$ref": "#/components/graphicSelect"
-                        }, {
-                            "$ref": "#/components/dynamicValue"
-                        }, {
-                            "$ref": "#/components/sheetRecord"
-                        }, {
-                            "$ref": "#/components/input"
-                        }, {
-                            "$ref": "#/components/inputValidator"
-                        }, {
-                            "$ref": "#/components/inputCollector"
-                        }, {
-                            "$ref": "#/components/video"
-                        }, {
-                            "$ref": "#/components/select"
-                        }, {
-                            "$ref": "#/components/text"
-                        }, {
-                            "$ref": "#/components/calculation"
-                        }, {
-                            "$ref": "#/components/converter"
-                        }, {
-                            "$ref": "#/components/dragAndDrop"
-                        }]
-                    }
-                }
-            },
-            "required": ["id", "slideId", "navigation"]
-        }
-    },
-    "type": "object",
-    "properties": {
-        "size": {
-            "$ref": "#/attributes/size"
-        },
-        "aspectRatio": {
-            "description": "The aspect ratio of the publication",
+    "image": {
+      "description": "Image component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
             "type": "string",
-            "enum": ["4:3", "16:9", "16:10", "3:2"]
+            "enum": ["image"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "width": {
+                "type": "number"
+              },
+              "height": {
+                "type": "number"
+              },
+              "src": {
+                "type": "string"
+              }
+            },
+            "required": ["width", "height", "src"]
+          }
         },
-        "stories": {
-            "description": "Pages of the publication",
+        "required": ["type", "data"]
+      }]
+    },
+    "advanced": {
+      "description": "Advanced component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["advanced"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "js": {
+                "type": "string"
+              }
+            },
+            "required": ["js"]
+          },
+          "assets": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/story"
+              "type": "string"
             }
-        }
+          }
+        },
+        "required": ["type", "data", "assets"]
+      }]
     },
-    "required": ["size", "aspectRatio"]
+    "text": {
+      "description": "Text component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["text"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string"
+              }
+            },
+            "required": ["content"]
+          },
+          "css": {
+            "$ref": "#/attributes/css"
+          }
+        },
+        "required": ["type", "data", "css"]
+      }]
+    },
+    "slider": {
+      "description": "Slider component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["slider"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "userData": {
+                "$ref": "#/attributes/userData"
+              },
+              "count": {
+                "type": "number"
+              },
+              "total": {
+                "type": "boolean"
+              },
+              "handle": {
+                "type": "object",
+                "properties": {
+                  "width": {
+                    "type": "number"
+                  }
+                }
+              },
+              "values": {
+                "type": "array"
+              },
+              "default": {
+                "type": "string"
+              },
+              "sheetInfo": {
+                "description": "optional property that binds the slider to a spreadsheet column",
+                "column": {
+                  "description": "the column/field to which you want to bind the slider",
+                  "type": "string"
+                },
+                "path": {
+                  "description": "@deprecated. Use userData property values instead to find the path of the slider component.",
+                  "type": "string"
+                }
+              }
+            },
+            "required": ["userData", "count", "total", "handle", "values", "default"]
+          },
+          "css": {
+            "$ref": "#/attributes/css"
+          },
+          "style": {
+            "allOf": [{
+              "$ref": "#/attributes/basicStyle"
+            }, {
+              "properties": {
+                "backgroundGradient": {
+                  "$ref": "#/attributes/gradientData"
+                },
+                "selectedForegroundColor": {
+                  "description": "the color of the selected value",
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "selectedBackgroundColor": {
+                  "description": "the background color of the selected value",
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "handlerHeight": {
+                  "description": "the height of slider's handler in pixels",
+                  "type": "number"
+                },
+                "handlerOffsetTop": {
+                  "description": "the offset top of the slider's handler",
+                  "type": "number"
+                }
+              },
+              "required": ["fontSize", "fontFamily", "foregroundColor", "backgroundColor", "height", "borderColor", "selectedForegroundColor", "selectedBackgroundColor", "handlerHeight", "handlerOffsetTop"]
+            }]
+          }
+        },
+        "required": ["type", "data", "css"]
+      }]
+    },
+    "webLink": {
+      "description": "webLink component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["webLink"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "src": {
+                "description": "the url we need to open",
+                "type": "string"
+              }
+            },
+            "required": ["src"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "storyLink": {
+      "description": "storyLink component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["storyLink"]
+          },
+          "data": {
+            "$ref": "#/attributes/storyLinkData"
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "pdfLink": {
+      "description": "pdfLink component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["pdfLink"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "src": {
+                "description": "the source of the pdf document",
+                "type": "string"
+              },
+              "startPage": {
+                "type": "number"
+              },
+              "externalApp": {
+                "type": "boolean"
+              }
+            },
+            "required": ["src", "startPage", "externalApp"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "refreshLink": {
+      "description": "refreshLink component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["refreshLink"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "refresh_target": {
+                "description": "page to show after the publication has been refreshed",
+                "type": "string",
+                "pattern": "(^$|(^S\\d*$))"
+              },
+              "timer": {
+                "description": "a timer starts counting when there is no activity",
+                "type": "string",
+                "enum": ["yes", "no"]
+              },
+              "milli": {
+                "description": "number of milliseconds after which to refresh, used by timer",
+                "type": "string",
+                "pattern": "^[0-9]*$"
+              }
+            },
+            "required": ["refresh_target", "timer", "milli"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "publicationLink": {
+      "description": "publicationLink component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["publicationLink"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "publicationName": {
+                "description": "the name of the publication the user wants to open",
+                "type": "string"
+              },
+              "story": {
+                "description": "the page that should be shown when opening the publication",
+                "type": "string",
+                "pattern": "^[0-9]*$"
+              }
+            },
+            "required": ["publicationName", "story"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "kioskLink": {
+      "description": "kioskLink component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["kioskLink"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "kioskName": {
+                "description": "the name of the kiosk the user wants to open",
+                "type": "string"
+              }
+            },
+            "required": ["kioskName"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "pdfSelect": {
+      "description": "pdfSelect component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["pdfSelect"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "files": {
+                "description": "the name of pdf files you can select",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": ["files"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "signature": {
+      "description": "signature component, using a canvas to allow users to sign a publication",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["signature"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "userData": {
+                "$ref": "#/attributes/userData"
+              },
+              "strokeColor": {
+                "type": "string"
+              },
+              "lineWidth": {
+                "type": "number"
+              },
+              "buttonLabel": {
+                "description": "the label appearing on the button that can be used to clear the signature canvas",
+                "type": "string"
+              },
+              "buttonPosition": {
+                "description": "the position of the button - relative to the canvas - that can be used to clear the signature canvas",
+                "type": "string",
+                "enum": ["top left", "top right", "bottom right", "bottom left"]
+              }
+            },
+            "required": ["strokeColor", "lineWidth", "buttonLabel", "buttonPosition"]
+          },
+          "css": {
+            "$ref": "#/attributes/css"
+          }
+        },
+        "required": ["type", "data", "css"]
+      }]
+    },
+    "graphicSelect": {
+      "description": "graphicSelect component a.k.a. select hotzone, equivalent of html area element",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["graphicSelect"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "userData": {
+                "$ref": "#/attributes/userData"
+              },
+              "image": {
+                "description": "the background image",
+                "type": "object",
+                "properties": {
+                  "src": {
+                    "type": "string"
+                  },
+                  "width": {
+                    "type": "number"
+                  },
+                  "height": {
+                    "type": "number"
+                  }
+                },
+                "required": ["src", "width", "height"]
+              },
+              "areas": {
+                "description": "specific zones/areas that can be clicked",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "top": {
+                      "description": "y-position relative to the hotzone magjet",
+                      "type": "number"
+                    },
+                    "left": {
+                      "description": "x-position relative to the hotzone magjet",
+                      "type": "number"
+                    },
+                    "type": {
+                      "description": "shape of the clickable area",
+                      "type": "string",
+                      "enum": ["circle"]
+                    },
+                    "value": {
+                      "description": "the value associated with this specific zone",
+                      "type": "string"
+                    },
+                    "radius": {
+                      "description": "radius of the circle, if 2 values are given they will determine the width and height of an ellipse",
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 1,
+                      "maxItems": 2
+                    },
+                    "path": {
+                      "description": "same purpose as userData.path",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "same purpose as userData.name",
+                      "type": "string"
+                    }
+                  },
+                  "required": ["top", "left", "type", "radius", "path", "name", "value"]
+                }
+              },
+              "singleAnswer": {
+                "description": "determines if the answer should be just one item",
+                "type": "boolean"
+              }
+            },
+            "required": ["userData", "image", "areas"]
+          },
+          "css": {
+            "$ref": "#/attributes/css"
+          }
+        },
+        "required": ["type", "data", "css"]
+      }]
+    },
+    "mail": {
+      "description": "@deprecated. Mail component, now moved to submit button configuration",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["mail"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["client", "server"]
+              },
+              "client": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "string"
+                  },
+                  "cc": {
+                    "type": "string"
+                  },
+                  "subject": {
+                    "type": "string"
+                  },
+                  "body": {
+                    "type": "string"
+                  }
+                },
+                "required": ["to", "cc", "subject", "body"]
+              },
+              "server": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "string"
+                  },
+                  "cc": {
+                    "type": "string"
+                  },
+                  "from": {
+                    "type": "string"
+                  },
+                  "subject": {
+                    "type": "string"
+                  },
+                  "replyTo": {
+                    "type": "string"
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "string"
+                      },
+                      "content": {
+                        "type": "string"
+                      },
+                      "end": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["start", "content", "end"]
+                  },
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "to": {
+                        "$ref": "#/attributes/propertyEnabled"
+                      },
+                      "from": {
+                        "$ref": "#/attributes/propertyEnabled"
+                      },
+                      "subject": {
+                        "$ref": "#/attributes/propertyEnabled"
+                      },
+                      "body": {
+                        "type": "object",
+                        "properties": {
+                          "content": {
+                            "$ref": "#/attributes/propertyEnabled"
+                          }
+                        },
+                        "required": ["content"]
+                      }
+                    }
+                  }
+                },
+                "required": ["to", "cc", "subject", "body", "user"]
+              }
+            },
+            "required": ["type"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "dynamicValue": {
+      "description": "dynamicValue component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["dynamicValue"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "userData": {
+                "$ref": "#/attributes/userData"
+              },
+              "enterprise": {
+                "description": "key of the enterprise in data store",
+                "type": "string"
+              },
+              "spreadsheet": {
+                "description": "key of the Google Drive spreadsheet",
+                "type": "string"
+              },
+              "spreadsheetOutput": {
+                "description": "key of the Google Drive spreadsheet to which to write updates",
+                "type": "string"
+              },
+              "displayColumn": {
+                "description": "field shown as label in dropdown",
+                "type": "string"
+              },
+              "useHistory": {
+                "description": "determines if data should be stored for offline usage",
+                "type": "boolean"
+              },
+              "showWarning": {
+                "description": "show warning when new data is available",
+                "type": "boolean"
+              },
+              "selectColumn": {
+                "description": "fields and values that are used to build a query retrieving specific results",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "field/column name",
+                      "type": "string"
+                    },
+                    "value": {
+                      "description": "field/column value",
+                      "type": "string"
+                    },
+                    "operator": {
+                      "description": "the query operator",
+                      "type": "string",
+                      "enum": ["AND", "OR"]
+                    }
+                  }
+                }
+              }
+            },
+            "required": ["userData", "enterprise", "spreadsheet", "displayColumn", "useHistory", "showWarning", "selectColumn"]
+          },
+          "css": {
+            "$ref": "#/attributes/css"
+          }
+        },
+        "required": ["type", "data", "css"]
+      }]
+    },
+    "sheetRecord": {
+      "description": "sheetRecord component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["sheetRecord"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "userData": {
+                "$ref": "#/attributes/userData"
+              },
+              "enterprise": {
+                "description": "key of the enterprise in data store",
+                "type": "string"
+              },
+              "spreadsheet": {
+                "description": "key of the Google Drive spreadsheet",
+                "type": "string"
+              },
+              "submitLabel": {
+                "type": "string"
+              },
+              "columns": {
+                "description": "columns and their values to be used for a new record/row in a spreadsheet",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "column": {
+                      "description": "field/column name",
+                      "type": "string"
+                    },
+                    "input": {
+                      "description": "field/column input value",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "required": ["userData", "enterprise", "spreadsheet", "submitLabel", "columns"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "input": {
+      "description": "input component a.k.a. open question magjet",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["input"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "userData": {
+                "$ref": "#/attributes/userData"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["text", "number", "textarea", "date"]
+              },
+              "label": {
+                "description": "the question being asked",
+                "type": "string"
+              },
+              "default": {
+                "description": "the default answer to the question",
+                "type": "string"
+              },
+              "sheetInfo": {
+                "column": {
+                  "description": "the column/field value from the dynamicValue spreadsheet that should be displayed in this input field",
+                  "type": "string"
+                },
+                "path": {
+                  "description": "@deprecated. Use userData property values instead",
+                  "type": "string"
+                }
+              }
+            },
+            "required": ["userData", "type", "label", "default"]
+          },
+          "css": {
+            "$ref": "#/attributes/css"
+          }
+        },
+        "required": ["type", "data", "css"]
+      }]
+    },
+    "inputValidator": {
+      "description": "inputValidator component maps to userinputvalidator magjet",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["inputValidator"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "collectorPath": {
+                "type": "string"
+              },
+              "inputPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": ["collectorPath", "inputPaths"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "inputCollector": {
+      "description": "inputCollector component maps to userinputcollector magjet",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["inputCollector"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "allFieldsAreMandatory": {
+                "type": "boolean"
+              },
+              "mandatoryFields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "internetConnectionRequired": {
+                "type": "boolean"
+              },
+              "closePublicationAfterSubmit": {
+                "type": "boolean"
+              },
+              "isReadOnly": {
+                "description": "means the field values cannot be changed by the user when viewing the publication",
+                "type": "boolean"
+              },
+              "resetOnSubmit": {
+                "type": "boolean"
+              },
+              "messages": {
+                "type": "object",
+                "properties": {
+                  "sending": {
+                    "description": "message to display while sending data",
+                    "type": "string"
+                  },
+                  "success": {
+                    "type": "string"
+                  }
+                },
+                "required": ["success"]
+              },
+              "pdf": {
+                "type": "object",
+                "properties": {
+                  "generate": {
+                    "anyOf": [{
+                      "type": "object",
+                      "properties": {
+                        "prepend": {
+                          "type": "string"
+                        },
+                        "append": {
+                          "type": "string"
+                        }
+                      }
+                    }, {
+                      "type": "boolean"
+                    }]
+                  },
+                  "addToMicrosite": {
+                    "type": "boolean"
+                  },
+                  "email": {
+                    "type": "object",
+                    "properties": {
+                      "send": {
+                        "type": "boolean"
+                      },
+                      "to": {
+                        "description": "recipients of the mail",
+                        "anyOf": [{
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }, {
+                          "description": "single email address, can also be an empty string",
+                          "type": "string"
+                        }]
+                      },
+                      "cc": {
+                        "description": "recipients in cc of the mail",
+                        "anyOf": [{
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }, {
+                          "description": "single email address, can also be an empty string",
+                          "type": "string"
+                        }]
+                      },
+                      "from": {
+                        "type": "string"
+                      },
+                      "subject": {
+                        "type": "string"
+                      },
+                      "body": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "description": "@TODO: find out what this is about",
+                        "type": "object"
+                      }
+                    },
+                    "required": ["send", "to", "cc", "from", "subject", "body", "path"]
+                  },
+                  "drive": {
+                    "type": "object",
+                    "properties": {
+                      "send": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                },
+                "required": ["generate", "addToMicrosite", "email", "drive"]
+              },
+              "excel": {
+                "type": "object",
+                "properties": {
+                  "send": {
+                    "type": "boolean"
+                  }
+                },
+                "required": ["send"]
+              },
+              "syncFileTransactions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "notificationUrl": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["notificationUrl"]
+                }
+              }
+            },
+            "required": ["path", "allFieldsAreMandatory", "messages", "excel", "syncFileTransactions", "pdf"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "video": {
+      "description": "video component",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "size": {
+            "$ref": "#/attributes/size"
+          },
+          "position": {
+            "$ref": "#/attributes/position"
+          },
+          "visibility": {
+            "$ref": "#/attributes/visibility"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["video"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "src": {
+                "type": "string"
+              },
+              "loop": {
+                "type": "boolean"
+              },
+              "controls": {
+                "type": "boolean"
+              },
+              "autoPlay": {
+                "type": "boolean"
+              },
+              "image": {
+                "description": "the poster image aka placeholder for this video",
+                "type": "object",
+                "properties": {
+                  "width": {
+                    "type": "number"
+                  },
+                  "height": {
+                    "type": "number"
+                  },
+                  "src": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "required": ["src", "image"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "select": {
+      "description": "select component aka survey magjet",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["select"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "userData": {
+                "$ref": "#/attributes/userData"
+              },
+              "type": {
+                "description": "determines how the options should be displayed",
+                "type": "string",
+                "enum": ["checkbox", "radio", "list"]
+              },
+              "label": {
+                "type": "string"
+              },
+              "bigTextFieldForInput": {
+                "type": "boolean",
+                "default": false
+              },
+              "sheetInfo": {
+                "description": "optional property that retrieves available options from a spreadsheet",
+                "column": {
+                  "description": "the column/field values from the dynamicValue spreadsheet that should be displayed as options",
+                  "type": "string"
+                },
+                "path": {
+                  "description": "@deprecated. Use userData property values instead to find the path of the select component.",
+                  "type": "string"
+                }
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    },
+                    "editable": {
+                      "type": "boolean"
+                    },
+                    "useTextarea": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "storyLink": {
+                      "$ref": "#/attributes/storyLinkData"
+                    }
+                  },
+                  "required": ["label", "value", "editable"]
+                }
+              }
+            },
+            "required": ["userData", "type", "label", "options"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
+    },
+    "calculation": {
+      "description": "calculation component",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["calculation"]
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "userData": {
+              "$ref": "#/attributes/userData"
+            },
+            "function": {
+              "description": "mathematical expression used to be calculated. ex: A * B",
+              "type": "string"
+            },
+            "inputs": {
+              "description": "key value object which maps the variable in the function to be replaced with the corresponding path",
+              "type": "object"
+            }
+          },
+          "required": ["userData", "function", "inputs"]
+        }
+      },
+      "required": ["type", "data"]
+    },
+    "converter": {
+      "description": "converter component",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["converter"]
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "userData": {
+              "$ref": "#/attributes/userData"
+            },
+            "input": {
+              "description": "the path of the field used as input for the converter",
+              "type": "string"
+            },
+            "default": {
+              "description": "default key of value used when there is no value from input",
+              "type": "string"
+            },
+            "range": {
+              "description": "if true, the interval between one key and other will also shown a value",
+              "type": "boolean"
+            },
+            "values": {
+              "description": "key value object which maps the input value to a string for display purposes",
+              "type": "object"
+            }
+          },
+          "required": ["userData", "input", "default", "values"]
+        }
+      },
+      "required": ["type", "data"]
+    },
+    "dragItem": {
+      "description": "dragItem is part of dragAndDrop magjet",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["dragItem"]
+          },
+          "src": {
+            "description": "the url of a image if necessary",
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "the value of the dragItem"
+              }
+            },
+            "required": ["value"]
+          },
+          "style": {
+            "allOf": [{
+              "$ref": "#/attributes/basicStyle"
+            }, {
+              "properties": {
+                "tagColor": {
+                  "description": "the color of the tag of a dragItem",
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                }
+              }
+            }]
+          }
+        },
+        "required": ["type", "data", "style"]
+      }]
+    },
+    "dropZone": {
+      "description": "dropZone is part of dragAndDrop magjet",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["dropZone"]
+          },
+          "style": {
+            "allOf": [{
+              "$ref": "#/attributes/basicStyle"
+            }, {
+              "required": ["borderColor"]
+            }]
+          }
+        },
+        "required": ["type", "style"]
+      }]
+    },
+    "dragAndDrop": {
+      "description": "dragAndDrop magjet",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["dragAndDrop"]
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "userData": {
+              "$ref": "#/attributes/userData"
+            }
+          },
+          "required": ["userData"]
+        },
+        "dragitems": {
+          "type": "array",
+          "description": "the list of dragItems",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/components/dragItem"
+          }
+        },
+        "dropzones": {
+          "type": "array",
+          "description": "the list of dropZones",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/components/dropZone"
+          }
+        }
+      },
+      "required": ["type", "data", "dragitems", "dropzones"]
+    }
+  },
+  "definitions": {
+    "story": {
+      "description": "A page within a publication",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9]*$"
+        },
+        "slideId": {
+          "type": "string",
+          "pattern": "^[0-9]*$"
+        },
+        "navigation": {
+          "$ref": "#/attributes/navigation"
+        },
+        "magjets": {
+          "description": "Components of the story",
+          "type": "array",
+          "items": {
+            "oneOf": [{
+              "$ref": "#/components/image"
+            }, {
+              "$ref": "#/components/advanced"
+            }, {
+              "$ref": "#/components/slider"
+            }, {
+              "$ref": "#/components/webLink"
+            }, {
+              "$ref": "#/components/storyLink"
+            }, {
+              "$ref": "#/components/pdfLink"
+            }, {
+              "$ref": "#/components/refreshLink"
+            }, {
+              "$ref": "#/components/publicationLink"
+            }, {
+              "$ref": "#/components/kioskLink"
+            }, {
+              "$ref": "#/components/pdfSelect"
+            }, {
+              "$ref": "#/components/signature"
+            }, {
+              "$ref": "#/components/mail"
+            }, {
+              "$ref": "#/components/graphicSelect"
+            }, {
+              "$ref": "#/components/dynamicValue"
+            }, {
+              "$ref": "#/components/sheetRecord"
+            }, {
+              "$ref": "#/components/input"
+            }, {
+              "$ref": "#/components/inputValidator"
+            }, {
+              "$ref": "#/components/inputCollector"
+            }, {
+              "$ref": "#/components/video"
+            }, {
+              "$ref": "#/components/select"
+            }, {
+              "$ref": "#/components/text"
+            }, {
+              "$ref": "#/components/calculation"
+            }, {
+              "$ref": "#/components/converter"
+            }, {
+              "$ref": "#/components/dragAndDrop"
+            }]
+          }
+        }
+      },
+      "required": ["id", "slideId", "navigation"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "size": {
+      "$ref": "#/attributes/size"
+    },
+    "aspectRatio": {
+      "description": "The aspect ratio of the publication",
+      "type": "string",
+      "enum": ["4:3", "16:9", "16:10", "3:2"]
+    },
+    "stories": {
+      "description": "Pages of the publication",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/story"
+      }
+    }
+  },
+  "required": ["size", "aspectRatio"]
 }
