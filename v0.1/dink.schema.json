@@ -1589,6 +1589,10 @@
       "type": "string",
       "enum": ["4:3", "16:9", "16:10", "3:2"]
     },
+    "responsive": {
+      "description": "If the responsive mode is enabled",
+      "type": "boolean"
+    },
     "stories": {
       "description": "Pages of the publication",
       "type": "array",
@@ -1597,5 +1601,5 @@
       }
     }
   },
-  "required": ["size", "aspectRatio"]
+  "required": ["size", "aspectRatio", "responsive"]
 }
