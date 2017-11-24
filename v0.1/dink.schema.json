@@ -344,6 +344,10 @@
             "properties": {
               "content": {
                 "type": "string"
+              },
+              "decimals": {
+                "type": "number",
+                "description": "number of decimals to be rendered in case the content.path is a numeric value"
               }
             },
             "required": ["content"]
