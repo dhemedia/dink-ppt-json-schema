@@ -1506,6 +1506,44 @@
         }
       },
       "required": ["type", "data", "dragitems", "dropzones"]
+    },
+    "reorder": {
+      "description": "reorder component allow the presentation changes the sequence of slides",
+      "allOf": [{
+        "$ref": "#/components/magjet"
+      }, {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["reorder"]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "userData": {
+                "$ref": "#/attributes/userData"
+              },
+              "input": {
+                "description": "the path of the field used as input for the change of the reorder",
+                "type": "string"
+              },
+              "summary": {
+                "description": "the slideId of the slide that should always appear",
+                "type": "string"
+              },
+              "slides": {
+                "description": "key of combination of slides to be the order when it matches with the input",
+                "type": "object",
+                "additionalProperties": {
+                  "type": "array"
+                }
+              }
+            },
+            "required": ["userData", "input", "summary", "slides"]
+          }
+        },
+        "required": ["type", "data"]
+      }]
     }
   },
   "definitions": {
@@ -1576,6 +1614,8 @@
               "$ref": "#/components/converter"
             }, {
               "$ref": "#/components/dragAndDrop"
+            }, {
+              "$ref": "#/components/reorder"
             }]
           }
         }
