@@ -1427,6 +1427,10 @@
           "data": {
             "type": "object",
             "properties": {
+              "label": {
+                "type": "string",
+                "description": "the label of the dragItem"
+              },
               "value": {
                 "type": "string",
                 "description": "the value of the dragItem"
@@ -1531,6 +1535,10 @@
                 "description": "the slideId of the slide that should always appear",
                 "type": "string"
               },
+              "autosave": {
+                "description": "if a click is necessary to change the order of slides",
+                "type": "boolean"
+              },
               "slides": {
                 "description": "key of combination of slides to be the order when it matches with the input",
                 "type": "object",
@@ -1539,7 +1547,7 @@
                 }
               }
             },
-            "required": ["userData", "input", "summary", "slides"]
+            "required": ["userData", "input", "summary", "autosave", "slides"]
           }
         },
         "required": ["type", "data"]
