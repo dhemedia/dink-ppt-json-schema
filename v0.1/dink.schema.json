@@ -183,6 +183,13 @@
           "description": "the color of the border",
           "type": "string",
           "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "borderWidth": {
+          "type": "integer"
+        },
+        "borderStyle": {
+          "type": "string",
+          "enum": ["solid", "dashed", "dotted"]
         }
       }
     },
@@ -354,9 +361,16 @@
           },
           "css": {
             "$ref": "#/attributes/css"
+          },
+          "style": {
+            "allOf": [{
+              "$ref": "#/attributes/basicStyle"
+            }, {
+              "required": ["fontSize", "fontFamily", "foregroundColor", "backgroundColor", "textAlignment", "borderColor", "borderWidth"]
+            }]
           }
         },
-        "required": ["type", "data", "css"]
+        "required": ["type", "data"]
       }]
     },
     "slider": {
@@ -443,7 +457,7 @@
             }]
           }
         },
-        "required": ["type", "data", "css"]
+        "required": ["type", "data"]
       }]
     },
     "webLink": {
