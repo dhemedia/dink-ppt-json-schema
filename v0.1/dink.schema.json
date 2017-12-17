@@ -1357,6 +1357,60 @@
               }
             },
             "required": ["userData", "type", "label", "options"]
+          },
+          "css": {
+            "$ref": "#/attributes/css"
+          },
+          "style": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "allOf": [{
+                  "$ref": "#/attributes/basicStyle"
+                }, {
+                  "required": ["fontFamily", "fontWeight", "fontSize", "textAlignment", "foregroundColor", "width"]
+                }]
+              },
+              "options": {
+                "allOf": [{
+                  "$ref": "#/attributes/basicStyle"
+                }, {
+                  "required": ["marginTop"]
+                }]
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "allOf": [{
+                    "$ref": "#/attributes/basicStyle"
+                  }, {
+                    "required": ["marginTop", "marginLeft", "width"]
+                  }]
+                }
+              },
+              "field": {
+                "allOf": [{
+                  "$ref": "#/attributes/basicStyle"
+                }, {
+                  "required": ["width", "height"]
+                }]
+              },
+              "label": {
+                "allOf": [{
+                  "$ref": "#/attributes/basicStyle"
+                }, {
+                  "required": ["fontFamily", "fontSize", "foregroundColor"]
+                }]
+              },
+              "other": {
+                "allOf": [{
+                  "$ref": "#/attributes/basicStyle"
+                }, {
+                  "required": ["fontSize", "marginTop", "marginLeft", "width", "height"]
+                }]
+              }
+            },
+            "required": ["question", "options", "items", "field", "label", "other"]
           }
         },
         "required": ["type", "data"]
