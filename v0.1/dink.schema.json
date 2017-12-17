@@ -1044,9 +1044,36 @@
           },
           "css": {
             "$ref": "#/attributes/css"
+          },
+          "style": {
+            "type": "object",
+            "properties": {
+              "container": {
+                "allOf": [{
+                  "$ref": "#/attributes/basicStyle"
+                }, {
+                  "required": ["width", "height"]
+                }]
+              },
+              "question": {
+                "allOf": [{
+                  "$ref": "#/attributes/basicStyle"
+                }, {
+                  "required": ["fontFamily", "fontWeight", "fontSize", "foregroundColor", "width", "height", "marginTop", "marginLeft"]
+                }]
+              },
+              "field": {
+                "allOf": [{
+                  "$ref": "#/attributes/basicStyle"
+                }, {
+                  "required": ["fontFamily", "fontSize", "foregroundColor", "backgroundColor", "width", "height", "marginTop", "marginLeft"]
+                }]
+              }
+            },
+            "required": ["container", "question", "field"]
           }
         },
-        "required": ["type", "data", "css"]
+        "required": ["type", "data"]
       }]
     },
     "inputValidator": {
