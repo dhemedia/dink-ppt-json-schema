@@ -1680,6 +1680,10 @@
                 "type": "boolean",
                 "description": "if the graph has to be rendered with a gradient"
               },
+              "label": {
+                "type": "boolean",
+                "description": "if the label has to be shown"
+              },
               "colors": {
                 "type": "array",
                 "description": "colors for each element of the chart",
@@ -1694,9 +1698,17 @@
                   "vertical": {
                     "type": "boolean",
                     "description": "if the lines of the bar chart are vertical"
+                  },
+                  "xAxis": {
+                    "type": "string",
+                    "description": "name of x axis"
+                  },
+                  "yAxis": {
+                    "type": "string",
+                    "description": "name of y axis"
                   }
                 },
-                "required": ["vertical"]
+                "required": ["vertical", "xAxis", "yAxis"]
               },
               "pie": {
                 "type": "object",
@@ -1719,7 +1731,7 @@
             "allOf": [{
               "$ref": "#/attributes/basicStyle"
             }, {
-              "required": ["fontFamily", "fontSize", "fontWeight"]
+              "required": ["fontFamily", "fontSize", "fontWeight", "width", "height"]
             }]
           }
         },
