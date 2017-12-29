@@ -1411,7 +1411,7 @@
                   "allOf": [{
                     "$ref": "#/attributes/basicStyle"
                   }, {
-                    "required": ["marginTop", "marginLeft", "width"]
+                    "required": ["fontFamily", "fontSize", "foregroundColor", "marginTop", "marginLeft", "width"]
                   }]
                 }
               },
@@ -1422,13 +1422,6 @@
                   "required": ["width", "height"]
                 }]
               },
-              "label": {
-                "allOf": [{
-                  "$ref": "#/attributes/basicStyle"
-                }, {
-                  "required": ["fontFamily", "fontSize", "foregroundColor"]
-                }]
-              },
               "other": {
                 "allOf": [{
                   "$ref": "#/attributes/basicStyle"
@@ -1437,7 +1430,7 @@
                 }]
               }
             },
-            "required": ["question", "options", "items", "field", "label", "other"]
+            "required": ["question", "options", "items", "field", "other"]
           }
         },
         "required": ["type", "data"]
