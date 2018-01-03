@@ -1411,16 +1411,19 @@
                   "allOf": [{
                     "$ref": "#/attributes/basicStyle"
                   }, {
-                    "required": ["fontFamily", "fontSize", "foregroundColor", "marginTop", "marginLeft", "width"]
+                    "properties": {
+                      "fieldWidth": {
+                        "type": "number",
+                        "description": "the width of the input element"
+                      },
+                      "fieldHeight": {
+                        "type": "number",
+                        "description": "the height of the input element"
+                      }
+                    },
+                    "required": ["fontFamily", "fontSize", "foregroundColor", "marginTop", "marginLeft", "width", "fieldWidth", "fieldHeight"]
                   }]
                 }
-              },
-              "field": {
-                "allOf": [{
-                  "$ref": "#/attributes/basicStyle"
-                }, {
-                  "required": ["width", "height"]
-                }]
               },
               "other": {
                 "allOf": [{
@@ -1430,7 +1433,7 @@
                 }]
               }
             },
-            "required": ["question", "options", "items", "field", "other"]
+            "required": ["question", "options", "items", "other"]
           }
         },
         "required": ["type", "data"]
