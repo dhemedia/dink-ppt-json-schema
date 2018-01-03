@@ -156,28 +156,28 @@
           "enum": ["overline", "line-through", "underline"]
         },
         "marginBottom": {
-          "type": "integer"
+          "type": "number"
         },
         "marginTop": {
-          "type": "integer"
+          "type": "number"
         },
         "marginLeft": {
-          "type": "integer"
+          "type": "number"
         },
         "marginRight": {
-          "type": "integer"
+          "type": "number"
         },
         "paddingTop": {
-          "type": "integer"
+          "type": "number"
         },
         "paddingBottom": {
-          "type": "integer"
+          "type": "number"
         },
         "paddingLeft": {
-          "type": "integer"
+          "type": "number"
         },
         "paddingRight": {
-          "type": "integer"
+          "type": "number"
         },
         "borderColor": {
           "description": "the color of the border",
@@ -185,7 +185,7 @@
           "pattern": "^#[0-9a-fA-F]{6}$"
         },
         "borderWidth": {
-          "type": "integer"
+          "type": "number"
         },
         "borderStyle": {
           "type": "string",
