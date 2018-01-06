@@ -1402,13 +1402,6 @@
                   "required": ["fontFamily", "fontWeight", "fontSize", "textAlignment", "foregroundColor", "width"]
                 }]
               },
-              "options": {
-                "allOf": [{
-                  "$ref": "#/attributes/basicStyle"
-                }, {
-                  "required": ["marginTop"]
-                }]
-              },
               "items": {
                 "type": "array",
                 "items": {
@@ -1437,7 +1430,7 @@
                 }]
               }
             },
-            "required": ["question", "options", "items", "other"]
+            "required": ["question", "items", "other"]
           }
         },
         "required": ["type", "data"]
