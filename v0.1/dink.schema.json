@@ -151,6 +151,10 @@
           "type": "string",
           "enum": ["left", "center", "justify", "right"]
         },
+        "verticalAlignment": {
+          "type": "string",
+          "enum": ["top", "middle", "bottom"]
+        },
         "textDecoration": {
           "type": "string",
           "enum": ["overline", "line-through", "underline"]
@@ -1421,7 +1425,7 @@
                         "description": "the height of the input element"
                       }
                     },
-                    "required": ["fontFamily", "fontSize", "foregroundColor", "marginTop", "marginLeft", "width", "fieldWidth", "fieldHeight"]
+                    "required": ["fontFamily", "fontSize", "foregroundColor", "marginTop", "marginLeft", "width", "fieldWidth", "fieldHeight", "verticalAlignment"]
                   }]
                 }
               },
