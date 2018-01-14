@@ -457,7 +457,7 @@
                   "type": "number"
                 }
               },
-              "required": ["fontSize", "fontFamily", "foregroundColor", "backgroundColor", "height", "selectedForegroundColor", "selectedBackgroundColor", "handlerHeight", "handlerOffsetTop"]
+              "required": ["fontSize", "backgroundColor", "height", "selectedForegroundColor", "selectedBackgroundColor", "handlerHeight", "handlerOffsetTop"]
             }]
           }
         },
@@ -1430,7 +1430,7 @@
                 }]
               }
             },
-            "required": ["question", "items", "other"]
+            "required": ["question", "items"]
           }
         },
         "required": ["type", "data"]
