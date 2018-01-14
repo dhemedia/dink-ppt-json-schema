@@ -1731,7 +1731,7 @@
             "allOf": [{
               "$ref": "#/attributes/basicStyle"
             }, {
-              "required": ["fontFamily", "fontSize", "fontWeight", "width", "height"]
+              "required": ["fontFamily", "fontSize", "fontWeight"]
             }]
           }
         },
