@@ -197,6 +197,22 @@
         }
       }
     },
+    "state": {
+      "description": "State info used to retrieve or save data",
+      "type": "object",
+      "properties": {
+        "storyKey": {
+          "type": "string"
+        },
+        "magjetName": {
+          "type": "string"
+        },
+        "eraseAfterUse": {
+          "type": "boolean"
+        }
+      },
+      "required": ["storyKey", "magjetName"]
+    },
     "userData": {
       "description": "User data, used by dynamicValue to know the path of the component",
       "type": "object",
@@ -1160,6 +1176,17 @@
                 },
                 "required": ["success"]
               },
+              "states": {
+                "type": "object",
+                "properties": {
+                  "load": {
+                    "$ref": "#/attributes/state"
+                  },
+                  "send": {
+                    "$ref": "#/attributes/state"
+                  }
+                }
+              },
               "pdf": {
                 "type": "object",
                 "properties": {
@@ -1225,7 +1252,7 @@
                         "type": "object"
                       }
                     },
-                    "required": ["send", "to", "cc", "from", "subject", "body", "path"]
+                    "required": ["send"]
                   },
                   "drive": {
                     "type": "object",
