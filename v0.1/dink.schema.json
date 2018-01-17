@@ -211,7 +211,8 @@
           "type": "boolean"
         },
         "action": {
-          "type": "string"
+          "type": "string",
+          "enum": ["ajax"]
         }
       },
       "required": ["storyKey", "magjetName"]
