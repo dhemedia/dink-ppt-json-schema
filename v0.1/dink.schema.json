@@ -209,6 +209,9 @@
         },
         "eraseAfterUse": {
           "type": "boolean"
+        },
+        "action": {
+          "type": "string"
         }
       },
       "required": ["storyKey", "magjetName"]
