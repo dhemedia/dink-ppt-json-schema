@@ -1715,6 +1715,10 @@
                 "type": "boolean",
                 "description": "if the label has to be shown"
               },
+              "legend": {
+                "type": "boolean",
+                "description": "if the legend has to be shown"
+              },
               "colors": {
                 "type": "array",
                 "description": "colors for each element of the chart",
