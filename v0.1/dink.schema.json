@@ -379,6 +379,10 @@
               "decimals": {
                 "type": "number",
                 "description": "number of decimals to be rendered in case the content.path is a numeric value"
+              },
+              "trigger": {
+                "type": "string",
+                "description": "userData.path of the element used to trigger the state change (used for vlookup)"
               }
             },
             "required": ["content"]
