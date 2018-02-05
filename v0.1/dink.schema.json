@@ -800,9 +800,22 @@
           },
           "css": {
             "$ref": "#/attributes/css"
+          },
+          "style": {
+            "allOf": [{
+              "$ref": "#/attributes/basicStyle"
+            }, {
+              "properties": {
+                "selectedBorderColor": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                }
+              },
+              "required": ["selectedBorderColor", "borderColor", "borderWidth"]
+            }]
           }
         },
-        "required": ["type", "data", "css"]
+        "required": ["type", "data"]
       }]
     },
     "mail": {
