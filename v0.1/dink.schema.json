@@ -823,7 +823,7 @@
       }]
     },
     "mail": {
-      "description": "@deprecated. Mail component, now moved to submit button configuration",
+      "description": "Mail component, now moved to submit button configuration",
       "allOf": [{
         "$ref": "#/components/magjet"
       }, {
@@ -843,10 +843,16 @@
                 "type": "object",
                 "properties": {
                   "to": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
                   },
                   "cc": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
                   },
                   "subject": {
                     "type": "string"
@@ -861,10 +867,16 @@
                 "type": "object",
                 "properties": {
                   "to": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
                   },
                   "cc": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
                   },
                   "from": {
                     "type": "string"
