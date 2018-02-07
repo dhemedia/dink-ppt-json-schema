@@ -139,6 +139,10 @@
           "type": "string",
           "enum": ["bold", "bolder", "lighter", "normal"]
         },
+        "fontStyle": {
+          "type": "string",
+          "enum": ["normal", "italic"]
+        },
         "foregroundColor": {
           "type": "string",
           "pattern": "^#[0-9a-fA-F]{6}$"
