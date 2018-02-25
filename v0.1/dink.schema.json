@@ -327,6 +327,20 @@
               },
               "src": {
                 "type": "string"
+              },
+              "animation": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "speed": {
+                    "type": "number"
+                  },
+                  "delay": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": ["width", "height", "src"]
