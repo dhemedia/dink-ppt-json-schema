@@ -339,8 +339,13 @@
                   },
                   "delay": {
                     "type": "number"
+                  },
+                  "trigger": {
+                    "type": "string",
+                    "enum": ["load", "click"]
                   }
-                }
+                },
+                "required": ["name", "speed"]
               }
             },
             "required": ["width", "height", "src"]
