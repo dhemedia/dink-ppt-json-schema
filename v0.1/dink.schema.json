@@ -342,7 +342,7 @@
                   },
                   "trigger": {
                     "type": "string",
-                    "enum": ["load", "click"]
+                    "enum": ["load", "click", "previous"]
                   }
                 },
                 "required": ["name", "speed"]
