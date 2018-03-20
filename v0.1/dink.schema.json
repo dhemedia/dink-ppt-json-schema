@@ -334,6 +334,9 @@
                   "name": {
                     "type": "string"
                   },
+                  "order": {
+                    "type": "number"
+                  },
                   "speed": {
                     "type": "number"
                   },
