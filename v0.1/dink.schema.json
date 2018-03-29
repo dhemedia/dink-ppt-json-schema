@@ -287,6 +287,28 @@
         }
       },
       "required": ["type", "direction", "colors"]
+    },
+    "animation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "speed": {
+          "type": "number"
+        },
+        "delay": {
+          "type": "number"
+        },
+        "trigger": {
+          "type": "string",
+          "enum": ["load", "click", "previous"]
+        }
+      },
+      "required": ["name", "speed"]
     }
   },
   "components": {
@@ -329,26 +351,7 @@
                 "type": "string"
               },
               "animation": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "order": {
-                    "type": "number"
-                  },
-                  "speed": {
-                    "type": "number"
-                  },
-                  "delay": {
-                    "type": "number"
-                  },
-                  "trigger": {
-                    "type": "string",
-                    "enum": ["load", "click", "previous"]
-                  }
-                },
-                "required": ["name", "speed"]
+                "$ref": "#/attributes/animation"
               }
             },
             "required": ["width", "height", "src"]
@@ -409,6 +412,9 @@
               "trigger": {
                 "type": "string",
                 "description": "userData.path of the element used to trigger the state change (used for vlookup)"
+              },
+              "animation": {
+                "$ref": "#/attributes/animation"
               }
             },
             "required": ["content"]
