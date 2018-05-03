@@ -305,7 +305,7 @@
         },
         "trigger": {
           "type": "string",
-          "enum": ["load", "click", "previous"]
+          "enum": ["load", "auto", "click", "previous"]
         }
       },
       "required": ["name", "speed"]
