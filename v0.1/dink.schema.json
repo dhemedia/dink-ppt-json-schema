@@ -163,6 +163,10 @@
           "type": "string",
           "enum": ["overline", "line-through", "underline"]
         },
+        "whiteSpace": {
+          "type": "string",
+          "enum": ["normal", "nowrap"]
+        },
         "marginBottom": {
           "type": "number"
         },
