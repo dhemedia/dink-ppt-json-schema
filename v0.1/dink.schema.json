@@ -1762,6 +1762,10 @@
                     "path": {
                       "type": "string",
                       "description": "the path of the element to be used as source"
+                    },
+                    "series": {
+                      "type": "string",
+                      "description": "the name of the series when the chart is multidimensional"
                     }
                   },
                   "required": ["label", "path"]
@@ -1769,7 +1773,7 @@
               },
               "type": {
                 "type": "string",
-                "enum": ["bar", "pie"],
+                "enum": ["bar", "pie", "radar"],
                 "description": "the type of the chart"
               },
               "gradient": {
@@ -1823,6 +1827,24 @@
                   }
                 },
                 "required": ["doughnut", "explode"]
+              },
+              "radar": {
+                "type": "object",
+                "properties": {
+                  "autoScale": {
+                    "type": "boolean",
+                    "description": "if the base of scale is not zero"
+                  },
+                  "xAxis": {
+                    "type": "string",
+                    "description": "name of x axis"
+                  },
+                  "yAxis": {
+                    "type": "string",
+                    "description": "name of y axis"
+                  }
+                },
+                "required": ["autoScale", "xAxis", "yAxis"]
               }
             },
             "required": ["inputs", "type", "colors"]
