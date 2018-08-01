@@ -356,6 +356,18 @@
               },
               "animation": {
                 "$ref": "#/attributes/animation"
+              },
+              "condition": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  },
+                  "match": {
+                    "type": "string"
+                  }
+                },
+                "required": ["path", "match"]
               }
             },
             "required": ["width", "height", "src"]
