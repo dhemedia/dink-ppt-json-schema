@@ -973,6 +973,9 @@
                 "userData": {
                   "$ref": "#/attributes/userData"
                 },
+                "isTransparent": {
+                  "type": "boolean"
+                },
                 "strokeColor": {
                   "type": "string"
                 },
@@ -995,11 +998,42 @@
                 }
               },
               "required": [
+                "isTransparent",
                 "strokeColor",
                 "lineWidth",
                 "buttonLabel",
                 "buttonPosition"
               ]
+            },
+            "style": {
+              "canvas": {
+                "allOf": [
+                  {
+                    "$ref": "#/attributes/basicStyle"
+                  },
+                  {
+                    "required": [
+                      "borderColor",
+                      "borderWidth",
+                      "borderStyle"
+                    ]
+                  }
+                ]
+              },
+              "clear": {
+                "allOf": [
+                  {
+                    "$ref": "#/attributes/basicStyle"
+                  },
+                  {
+                    "required": [
+                      "width",
+                      "height",
+                      "backgroundColor"
+                    ]
+                  }
+                ]
+              }
             },
             "css": {
               "$ref": "#/attributes/css"
@@ -1008,7 +1042,7 @@
           "required": [
             "type",
             "data",
-            "css"
+            "style"
           ]
         }
       ]
