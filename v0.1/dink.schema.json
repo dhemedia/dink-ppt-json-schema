@@ -612,6 +612,10 @@
                     }
                   }
                 },
+                "autoSave": {
+                  "type": "boolean",
+                  "description": "when set to true, it saves the value when the user is still dragging the slider"
+                },
                 "values": {
                   "type": "array"
                 },
