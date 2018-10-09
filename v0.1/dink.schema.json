@@ -1722,6 +1722,64 @@
                     }
                   }
                 },
+                "email": {
+                  "type": "object",
+                  "properties": {
+                    "includeGeneratedPdf": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "send": {
+                      "type": "boolean"
+                    },
+                    "to": {
+                      "description": "recipients of the mail",
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "description": "single email address, can also be an empty string",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "cc": {
+                      "description": "recipients in cc of the mail",
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "description": "single email address, can also be an empty string",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "from": {
+                      "type": "string"
+                    },
+                    "subject": {
+                      "type": "string"
+                    },
+                    "body": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "description": "@TODO: find out what this is about",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "send"
+                  ]
+                },
                 "pdf": {
                   "type": "object",
                   "properties": {
@@ -1746,60 +1804,6 @@
                     "addToMicrosite": {
                       "type": "boolean"
                     },
-                    "email": {
-                      "type": "object",
-                      "properties": {
-                        "send": {
-                          "type": "boolean"
-                        },
-                        "to": {
-                          "description": "recipients of the mail",
-                          "anyOf": [
-                            {
-                              "type": "array",
-                              "items": {
-                                "type": "string"
-                              }
-                            },
-                            {
-                              "description": "single email address, can also be an empty string",
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "cc": {
-                          "description": "recipients in cc of the mail",
-                          "anyOf": [
-                            {
-                              "type": "array",
-                              "items": {
-                                "type": "string"
-                              }
-                            },
-                            {
-                              "description": "single email address, can also be an empty string",
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "from": {
-                          "type": "string"
-                        },
-                        "subject": {
-                          "type": "string"
-                        },
-                        "body": {
-                          "type": "string"
-                        },
-                        "path": {
-                          "description": "@TODO: find out what this is about",
-                          "type": "object"
-                        }
-                      },
-                      "required": [
-                        "send"
-                      ]
-                    },
                     "drive": {
                       "type": "object",
                       "properties": {
@@ -1812,7 +1816,6 @@
                   "required": [
                     "generate",
                     "addToMicrosite",
-                    "email",
                     "drive"
                   ]
                 },
@@ -1848,7 +1851,8 @@
                 "messages",
                 "excel",
                 "syncFileTransactions",
-                "pdf"
+                "pdf",
+                "email"
               ]
             }
           },
