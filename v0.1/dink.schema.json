@@ -443,6 +443,13 @@
                 "animation": {
                   "$ref": "#/attributes/animation"
                 },
+                "scroll": {
+                  "type": "string",
+                  "enum": [
+                    "vertical",
+                    "horizontal"
+                  ]
+                },
                 "condition": {
                   "type": "object",
                   "properties": {
@@ -460,10 +467,26 @@
                 }
               },
               "required": [
-                "width",
-                "height",
                 "src"
               ]
+            },
+            "style": {
+              "type": "object",
+              "properties": {
+                "container": {
+                  "allOf": [
+                    {
+                      "$ref": "#/attributes/basicStyle"
+                    },
+                    {
+                      "required": [
+                        "borderColor",
+                        "borderWidth"
+                      ]
+                    }
+                  ]
+                }
+              }
             }
           },
           "required": [
