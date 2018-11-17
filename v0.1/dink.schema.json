@@ -564,6 +564,10 @@
                   "type": "string",
                   "description": "userData.path of the element used to trigger the state change (used for vlookup)"
                 },
+                "multiline": {
+                  "type": "boolean",
+                  "description": "if true, the text inside will respect the style.width limit"
+                },
                 "animation": {
                   "$ref": "#/attributes/animation"
                 }
