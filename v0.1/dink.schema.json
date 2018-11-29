@@ -2395,18 +2395,15 @@
                   "description": "if a click is necessary to change the order of slides",
                   "type": "boolean"
                 },
+                "showList": {
+                  "description": "if a list with the label of the selected slides has to be shown",
+                  "type": "boolean"
+                },
                 "slides": {
                   "description": "key of combination of slides to be the order when it matches with the input",
                   "type": "object",
                   "additionalProperties": {
                     "type": "array"
-                  }
-                },
-                "labels": {
-                  "description": "name of each slide to be shown in filtered table",
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
                   }
                 }
               },
