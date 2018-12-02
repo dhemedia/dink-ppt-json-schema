@@ -2399,6 +2399,10 @@
                   "description": "if a list with the label of the selected slides has to be shown",
                   "type": "boolean"
                 },
+                "ignoreOrder": {
+                  "description": "when true, the original slides order won't be respected",
+                  "type": "boolean"
+                },
                 "slides": {
                   "description": "key of combination of slides to be the order when it matches with the input",
                   "type": "object",
