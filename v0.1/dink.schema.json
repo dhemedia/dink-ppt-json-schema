@@ -2271,6 +2271,9 @@
                       "description": "the color of the tag of a dragItem",
                       "type": "string",
                       "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "image": {
+                      "type": "string"
                     }
                   }
                 }
