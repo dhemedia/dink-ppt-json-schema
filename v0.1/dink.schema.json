@@ -827,6 +827,14 @@
                 },
                 "externalApp": {
                   "type": "boolean"
+                },
+                "annotated": {
+                  "type": "boolean",
+                  "description": "indicates if file can be added to account hub"
+                },
+                "shared": {
+                  "type": "boolean",
+                  "description": "indicates if annotations option needs to be available"
                 }
               },
               "required": [
