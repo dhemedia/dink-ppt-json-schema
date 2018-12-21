@@ -2108,6 +2108,10 @@
                           "fieldHeight": {
                             "type": "number",
                             "description": "the height of the input element"
+                          },
+                          "invisible": {
+                            "type": "boolean",
+                            "description": "true when the field has to be invisible"
                           }
                         },
                         "required": [
