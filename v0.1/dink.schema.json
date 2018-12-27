@@ -590,11 +590,7 @@
                   "required": [
                     "fontSize",
                     "fontFamily",
-                    "foregroundColor",
-                    "backgroundColor",
-                    "textAlignment",
-                    "borderColor",
-                    "borderWidth"
+                    "foregroundColor"
                   ]
                 }
               ]
