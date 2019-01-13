@@ -2557,6 +2557,18 @@
                       "type": "boolean",
                       "description": "if the lines of the bar chart are vertical"
                     },
+                    "gutter": {
+                      "type": "number",
+                      "description": "space in pixels between each column"
+                    },
+                    "xFormat": {
+                      "type": "string",
+                      "description": "a way to customize the labels of the x Axys"
+                    },
+                    "yFormat": {
+                      "type": "string",
+                      "description": "a way to customize the labels of the y Axys"
+                    },
                     "xAxis": {
                       "type": "string",
                       "description": "name of x axis"
