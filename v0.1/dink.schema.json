@@ -2561,6 +2561,10 @@
                       "type": "number",
                       "description": "space in pixels between each column"
                     },
+                    "showData": {
+                      "type": "boolean",
+                      "description": "if the value of the column has to be shown in the chart"
+                    },
                     "xFormat": {
                       "type": "string",
                       "description": "a way to customize the labels of the x Axys"
