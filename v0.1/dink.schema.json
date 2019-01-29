@@ -2268,6 +2268,10 @@
                 "value": {
                   "type": "string",
                   "description": "the value of the dragItem"
+                },
+                "unselected": {
+                  "type": "string",
+                  "description": "the value of the dragItem when unselected and orderByDragItem is true"
                 }
               },
               "required": [
@@ -2348,6 +2352,10 @@
         "data": {
           "type": "object",
           "properties": {
+            "orderByDragItem": {
+              "type": "boolean",
+              "description": "if true, the output value will consider the dragItem's order instead of the dropZone's"
+            },
             "userData": {
               "$ref": "#/attributes/userData"
             }
