@@ -2266,8 +2266,19 @@
                   "description": "the label of the dragItem"
                 },
                 "value": {
-                  "type": "string",
-                  "description": "the value of the dragItem"
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "description": "the value of the dragItem"
+                    },
+                    {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
                 },
                 "unselected": {
                   "type": "string",
