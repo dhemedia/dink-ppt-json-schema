@@ -243,6 +243,22 @@
             "dashed",
             "dotted"
           ]
+        },
+        "listStyleType": {
+          "type": "string",
+          "enum": [
+            "disc",
+            "circle",
+            "square",
+            "decimal"
+          ]
+        },
+        "listStylePosition": {
+          "type": "string",
+          "enum": [
+            "inside",
+            "outside"
+          ]
         }
       }
     },
