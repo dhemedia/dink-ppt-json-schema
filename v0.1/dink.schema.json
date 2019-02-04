@@ -743,6 +743,23 @@
                       ]
                     }
                   ]
+                },
+                "selected": {
+                  "allOf": [
+                    {
+                      "$ref": "#/attributes/basicStyle"
+                    },
+                    {
+                      "properties": {
+                        "image": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "image"
+                      ]
+                    }
+                  ]
                 }
               },
               "required": [
