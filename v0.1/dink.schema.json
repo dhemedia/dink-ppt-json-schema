@@ -578,6 +578,14 @@
                   "type": "number",
                   "description": "number of decimals to be rendered in case the content.path is a numeric value"
                 },
+                "rounding": {
+                  "type": "string",
+                  "enum": [
+                    "normal",
+                    "up",
+                    "down"
+                  ]
+                },
                 "format": {
                   "type": "string",
                   "description": "another way to customize the output"
