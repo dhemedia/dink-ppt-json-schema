@@ -2215,13 +2215,25 @@
             "userData": {
               "$ref": "#/attributes/userData"
             },
+            "inputs": {
+              "description": "key value object which maps the variable in the function to be replaced with the corresponding path",
+              "type": "object"
+            },
             "function": {
               "description": "mathematical expression used to be calculated. ex: A * B",
               "type": "string"
             },
-            "inputs": {
-              "description": "key value object which maps the variable in the function to be replaced with the corresponding path",
-              "type": "object"
+            "decimals": {
+              "type": "number",
+              "description": "number of decimals to be used in calculation"
+            },
+            "rounding": {
+              "type": "string",
+              "enum": [
+                "normal",
+                "up",
+                "down"
+              ]
             }
           },
           "required": [
