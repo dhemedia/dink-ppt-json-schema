@@ -280,6 +280,9 @@
           "enum": [
             "ajax"
           ]
+        },
+        "sendPayload": {
+          "type": "boolean"
         }
       },
       "required": [
