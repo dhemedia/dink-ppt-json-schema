@@ -2475,9 +2475,9 @@
                 "userData": {
                   "$ref": "#/attributes/userData"
                 },
-                "input": {
-                  "description": "the path of the field used as input for the change of the reorder",
-                  "type": "string"
+                "inputs": {
+                  "description": "list of paths of the fields used as input for the change of the reorder",
+                  "type": "array"
                 },
                 "summary": {
                   "description": "the slideId of the slide that should always appear",
@@ -2505,7 +2505,7 @@
               },
               "required": [
                 "userData",
-                "input",
+                "inputs",
                 "summary",
                 "autosave",
                 "slides"
