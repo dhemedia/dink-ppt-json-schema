@@ -1623,6 +1623,10 @@
                   "description": "the default answer to the question",
                   "type": "string"
                 },
+                "replaceWhenChanged": {
+                  "description": "replaces the value of an input magjet when the default value comes from a different magjet",
+                  "type": "boolean"
+                },
                 "sheetInfo": {
                   "column": {
                     "description": "the column/field value from the dynamicValue spreadsheet that should be displayed in this input field",
