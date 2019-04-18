@@ -1627,6 +1627,18 @@
                   "description": "replaces the value of an input magjet when the default value comes from a different magjet",
                   "type": "boolean"
                 },
+                "decimals": {
+                  "type": "number",
+                  "description": "number of decimals to be used in calculation"
+                },
+                "rounding": {
+                  "type": "string",
+                  "enum": [
+                    "normal",
+                    "up",
+                    "down"
+                  ]
+                },
                 "sheetInfo": {
                   "column": {
                     "description": "the column/field value from the dynamicValue spreadsheet that should be displayed in this input field",
