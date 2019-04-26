@@ -1916,9 +1916,6 @@
                         }
                       ]
                     },
-                    "addToMicrosite": {
-                      "type": "boolean"
-                    },
                     "drive": {
                       "type": "object",
                       "properties": {
@@ -1930,7 +1927,6 @@
                   },
                   "required": [
                     "generate",
-                    "addToMicrosite",
                     "drive"
                   ]
                 },
