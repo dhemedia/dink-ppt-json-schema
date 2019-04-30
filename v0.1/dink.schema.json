@@ -2613,7 +2613,8 @@
                   "enum": [
                     "bar",
                     "pie",
-                    "radar"
+                    "radar",
+                    "stacked"
                   ],
                   "description": "the type of the chart"
                 },
@@ -2638,6 +2639,44 @@
                   }
                 },
                 "bar": {
+                  "type": "object",
+                  "properties": {
+                    "vertical": {
+                      "type": "boolean",
+                      "description": "if the lines of the bar chart are vertical"
+                    },
+                    "gutter": {
+                      "type": "number",
+                      "description": "space in pixels between each column"
+                    },
+                    "showData": {
+                      "type": "boolean",
+                      "description": "if the value of the column has to be shown in the chart"
+                    },
+                    "xFormat": {
+                      "type": "string",
+                      "description": "a way to customize the labels of the x Axys"
+                    },
+                    "yFormat": {
+                      "type": "string",
+                      "description": "a way to customize the labels of the y Axys"
+                    },
+                    "xAxis": {
+                      "type": "string",
+                      "description": "name of x axis"
+                    },
+                    "yAxis": {
+                      "type": "string",
+                      "description": "name of y axis"
+                    }
+                  },
+                  "required": [
+                    "vertical",
+                    "xAxis",
+                    "yAxis"
+                  ]
+                },
+                "stacked": {
                   "type": "object",
                   "properties": {
                     "vertical": {
