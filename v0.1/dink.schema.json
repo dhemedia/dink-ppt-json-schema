@@ -2293,6 +2293,10 @@
             "values": {
               "description": "key value object which maps the input value to a string for display purposes",
               "type": "object"
+            },
+            "removeEmptyPositions": {
+              "description": "when true, removes the null positions in the input's array",
+              "type": "boolean"
             }
           },
           "required": [
