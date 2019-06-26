@@ -2618,7 +2618,8 @@
                     "bar",
                     "pie",
                     "radar",
-                    "stacked"
+                    "stacked",
+                    "line"
                   ],
                   "description": "the type of the chart"
                 },
@@ -2714,6 +2715,31 @@
                   },
                   "required": [
                     "vertical",
+                    "xAxis",
+                    "yAxis"
+                  ]
+                },
+                "line": {
+                  "type": "object",
+                  "properties": {
+                    "xFormat": {
+                      "type": "string",
+                      "description": "a way to customize the labels of the x Axys"
+                    },
+                    "yFormat": {
+                      "type": "string",
+                      "description": "a way to customize the labels of the y Axys"
+                    },
+                    "xAxis": {
+                      "type": "string",
+                      "description": "name of x axis"
+                    },
+                    "yAxis": {
+                      "type": "string",
+                      "description": "name of y axis"
+                    }
+                  },
+                  "required": [
                     "xAxis",
                     "yAxis"
                   ]
