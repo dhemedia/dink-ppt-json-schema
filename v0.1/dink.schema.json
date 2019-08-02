@@ -2168,6 +2168,10 @@
                           "invisible": {
                             "type": "boolean",
                             "description": "true when the field has to be invisible"
+                          },
+                          "image": {
+                            "type": "string",
+                            "description": "the image of the arrow icon"
                           }
                         },
                         "required": [
