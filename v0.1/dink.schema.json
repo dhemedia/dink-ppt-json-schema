@@ -1844,9 +1844,6 @@
                       "type": "boolean",
                       "default": true
                     },
-                    "send": {
-                      "type": "boolean"
-                    },
                     "to": {
                       "description": "recipients of the mail",
                       "anyOf": [
@@ -1890,10 +1887,7 @@
                       "description": "@TODO: find out what this is about",
                       "type": "object"
                     }
-                  },
-                  "required": [
-                    "send"
-                  ]
+                  }
                 },
                 "pdf": {
                   "type": "object",
@@ -1916,18 +1910,19 @@
                         }
                       ]
                     },
-                    "drive": {
-                      "type": "object",
-                      "properties": {
-                        "send": {
-                          "type": "boolean"
-                        }
-                      }
+                    "share": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "enterprise",
+                        "email",
+                        "accounthub"
+                      ]
                     }
                   },
                   "required": [
                     "generate",
-                    "drive"
+                    "share"
                   ]
                 },
                 "excel": {
@@ -1962,8 +1957,7 @@
                 "messages",
                 "excel",
                 "syncFileTransactions",
-                "pdf",
-                "email"
+                "pdf"
               ]
             }
           },
