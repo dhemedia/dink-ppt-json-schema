@@ -2621,7 +2621,8 @@
                     "pie",
                     "radar",
                     "stacked",
-                    "line"
+                    "line",
+                    "bubble"
                   ],
                   "description": "the type of the chart"
                 },
@@ -2785,6 +2786,50 @@
                     "max": {
                       "type": "number",
                       "description": "maximum scale"
+                    }
+                  },
+                  "required": [
+                    "autoScale",
+                    "xAxis",
+                    "yAxis"
+                  ]
+                },
+                "bubble": {
+                  "type": "object",
+                  "properties": {
+                    "autoScale": {
+                      "type": "boolean",
+                      "description": "if the base of scale is not zero"
+                    },
+                    "xAxis": {
+                      "type": "boolean",
+                      "description": "if the x axis will be shown"
+                    },
+                    "yAxis": {
+                      "type": "boolean",
+                      "description": "if the y axis will be shown"
+                    },
+                    "highlight": {
+                      "type": "object",
+                      "description": "hightlighted point in the chart",
+                      "properties": {
+                        "position": {
+                          "type": "array",
+                          "description": "position of the highlighted point (0 = x, 1 = y)",
+                          "items": {
+                            "type": "number"
+                          }
+                        },
+                        "color": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$",
+                          "description": "color of the highlighted point"
+                        }
+                      },
+                      "required": [
+                        "position",
+                        "color"
+                      ]
                     }
                   },
                   "required": [
