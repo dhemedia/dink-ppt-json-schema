@@ -2676,6 +2676,28 @@
                     "yAxis": {
                       "type": "string",
                       "description": "name of y axis"
+                    },
+                    "benchmark": {
+                      "type": "object",
+                      "properties": {
+                        "color": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$",
+                          "description": "color of the benchmark point"
+                        },
+                        "column": {
+                          "type": "string",
+                          "description": "path of the the survey magjet that has the benchmarked column name as a value"
+                        },
+                        "coefficient": {
+                          "type": "number",
+                          "description": "percentage in decimals of the position of the benchmark point related to the bar's height"
+                        }
+                      },
+                      "required": [
+                        "color",
+                        "column"
+                      ]
                     }
                   },
                   "required": [
