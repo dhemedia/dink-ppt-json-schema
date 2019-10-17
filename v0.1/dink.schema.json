@@ -2831,6 +2831,34 @@
                       "type": "boolean",
                       "description": "if the y axis will be shown"
                     },
+                    "limits": {
+                      "type": "object",
+                      "description": "limits of the chart",
+                      "properties": {
+                        "xMin": {
+                          "type": "number",
+                          "description": "minimum x-scale value"
+                        },
+                        "xMax": {
+                          "type": "number",
+                          "description": "maximum x-scale value"
+                        },
+                        "yMin": {
+                          "type": "number",
+                          "description": "minimum y-scale value"
+                        },
+                        "yMax": {
+                          "type": "number",
+                          "description": "maximum y-scale value"
+                        }
+                      },
+                      "required": [
+                        "xMin",
+                        "xMax",
+                        "yMin",
+                        "yMax"
+                      ]
+                    },
                     "highlight": {
                       "type": "object",
                       "description": "hightlighted point in the chart",
