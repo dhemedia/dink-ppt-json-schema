@@ -2603,14 +2603,32 @@
                         "type": "string",
                         "description": "the path of the element to be used as source"
                       },
+                      "value": {
+                        "type": "number",
+                        "description": "the static value when path is not filled"
+                      },
                       "series": {
                         "type": "string",
                         "description": "the name of the series when the chart is multidimensional"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "used by the bubble chart to know whether this path is about the x or y coordinates"
                       }
                     },
-                    "required": [
-                      "label",
-                      "path"
+                    "anyOf": [
+                      {
+                        "required": [
+                          "label",
+                          "path"
+                        ]
+                      },
+                      {
+                        "required": [
+                          "label",
+                          "value"
+                        ]
+                      }
                     ]
                   }
                 },
