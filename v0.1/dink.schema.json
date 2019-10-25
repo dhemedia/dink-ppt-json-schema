@@ -2877,15 +2877,15 @@
                         "yMax"
                       ]
                     },
-                    "highlight": {
+                    "benchmark": {
                       "type": "object",
                       "description": "hightlighted point in the chart",
                       "properties": {
                         "position": {
                           "type": "array",
-                          "description": "position of the highlighted point (0 = x, 1 = y)",
+                          "description": "position pr path of the highlighted point (0 = x, 1 = y)",
                           "items": {
-                            "type": "number"
+                            "type": [ "number",  "string" ]
                           }
                         },
                         "color": {
