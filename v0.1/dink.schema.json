@@ -2632,6 +2632,40 @@
                     ]
                   }
                 },
+                "source": {
+                  "type": "object",
+                  "description": "the 'source table' of the chart",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "the way the path is built"
+                    },
+                    "columns": {
+                      "type": [
+                        "number",
+                        "string"
+                      ],
+                      "description": "number of columns or the trigger for the columns"
+                    },
+                    "rows": {
+                      "type": [
+                        "number",
+                        "string"
+                      ],
+                      "description": "number of rows or the trigger for the rows"
+                    },
+                    "header": {
+                      "type": "boolean",
+                      "description": "if the first row/column has to be ignored"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "columns",
+                    "rows",
+                    "labels"
+                  ]
+                },
                 "type": {
                   "type": "string",
                   "enum": [
@@ -2907,10 +2941,21 @@
                   ]
                 }
               },
-              "required": [
-                "inputs",
-                "type",
-                "colors"
+              "anyOf": [
+                {
+                  "required": [
+                    "inputs",
+                    "type",
+                    "colors"
+                  ]
+                },
+                {
+                  "required": [
+                    "source",
+                    "type",
+                    "colors"
+                  ]
+                }
               ]
             },
             "style": {
