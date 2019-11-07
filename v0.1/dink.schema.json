@@ -2919,7 +2919,10 @@
                           "type": "array",
                           "description": "position pr path of the highlighted point (0 = x, 1 = y)",
                           "items": {
-                            "type": [ "number",  "string" ]
+                            "type": [
+                              "number",
+                              "string"
+                            ]
                           }
                         },
                         "color": {
@@ -2932,6 +2935,28 @@
                         "position",
                         "color"
                       ]
+                    },
+                    "references": {
+                      "type": "array",
+                      "description": "list of reference lines",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$",
+                            "description": "color of the reference line"
+                          },
+                          "value": {
+                            "type": "number",
+                            "description": "the y position of the line according to the scale"
+                          }
+                        },
+                        "required": [
+                          "color",
+                          "value"
+                        ]
+                      }
                     }
                   },
                   "required": [
