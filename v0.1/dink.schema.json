@@ -2067,6 +2067,9 @@
                 "label": {
                   "type": "string"
                 },
+                "default": {
+                  "type": "string"
+                },
                 "bigTextFieldForInput": {
                   "type": "boolean",
                   "default": false
