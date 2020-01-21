@@ -2732,6 +2732,42 @@
                       "type": "string",
                       "description": "name of y axis"
                     },
+                    "limits": {
+                      "type": "object",
+                      "description": "limits of the chart",
+                      "properties": {
+                        "xMin": {
+                          "type": "number",
+                          "description": "minimum x-scale value (will only work when not vertical)"
+                        },
+                        "xMax": {
+                          "type": "number",
+                          "description": "maximum x-scale value (will only work when not vertical)"
+                        },
+                        "yMin": {
+                          "type": "number",
+                          "description": "minimum y-scale value (will only work when vertical)"
+                        },
+                        "yMax": {
+                          "type": "number",
+                          "description": "maximum y-scale value (will only work when vertical)"
+                        }
+                      },
+                      "anyOf": [
+                        {
+                          "required": [
+                            "xMin",
+                            "xMax"
+                          ]
+                        },
+                        {
+                          "required": [
+                            "yMin",
+                            "yMax"
+                          ]
+                        }
+                      ]
+                    },
                     "benchmark": {
                       "type": "object",
                       "properties": {
