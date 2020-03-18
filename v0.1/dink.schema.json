@@ -2035,6 +2035,51 @@
         }
       ]
     },
+    "audio": {
+      "description": "audio component",
+      "allOf": [
+        {
+          "$ref": "#/components/magjet"
+        },
+        {
+          "properties": {
+            "size": {
+              "$ref": "#/attributes/size"
+            },
+            "position": {
+              "$ref": "#/attributes/position"
+            },
+            "visibility": {
+              "$ref": "#/attributes/visibility"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "audio"
+              ]
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "src": {
+                  "type": "string"
+                },
+                "loop": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "src"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "data"
+          ]
+        }
+      ]
+    },
     "select": {
       "description": "select component aka survey magjet",
       "allOf": [
@@ -3123,6 +3168,9 @@
               },
               {
                 "$ref": "#/components/video"
+              },
+              {
+                "$ref": "#/components/audio"
               },
               {
                 "$ref": "#/components/select"
