@@ -1446,77 +1446,44 @@
             "data": {
               "type": "object",
               "properties": {
-                "userData": {
-                  "$ref": "#/attributes/userData"
-                },
-                "enterprise": {
-                  "description": "key of the enterprise in data store",
+                "image": {
+                  "description": "image file of the submit button",
                   "type": "string"
                 },
-                "spreadsheet": {
-                  "description": "key of the Google Drive spreadsheet",
-                  "type": "string"
+                "inputs": {
+                  "description": "list of paths of the fields used as input",
+                  "type": "object"
                 },
-                "spreadsheetOutput": {
-                  "description": "key of the Google Drive spreadsheet to which to write updates",
-                  "type": "string"
-                },
-                "displayColumn": {
-                  "description": "field shown as label in dropdown",
-                  "type": "string"
-                },
-                "useHistory": {
-                  "description": "determines if data should be stored for offline usage",
-                  "type": "boolean"
-                },
-                "showWarning": {
-                  "description": "show warning when new data is available",
-                  "type": "boolean"
-                },
-                "selectColumn": {
-                  "description": "fields and values that are used to build a query retrieving specific results",
-                  "type": "array",
+                "required": {
+                  "description": "fields that are required according the type",
+                  "type": "object",
                   "items": {
                     "type": "object",
                     "properties": {
-                      "name": {
-                        "description": "field/column name",
-                        "type": "string"
+                      "get": {
+                        "type": "object"
                       },
-                      "value": {
-                        "description": "field/column value",
-                        "type": "string"
-                      },
-                      "operator": {
-                        "description": "the query operator",
-                        "type": "string",
-                        "enum": [
-                          "AND",
-                          "OR"
-                        ]
+                      "submit": {
+                        "type": "object"
                       }
-                    }
+                    },
+                    "required": [
+                      "get",
+                      "submit"
+                    ]
                   }
                 }
               },
               "required": [
-                "userData",
-                "enterprise",
-                "spreadsheet",
-                "displayColumn",
-                "useHistory",
-                "showWarning",
-                "selectColumn"
+                "image",
+                "inputs",
+                "required"
               ]
-            },
-            "css": {
-              "$ref": "#/attributes/css"
             }
           },
           "required": [
             "type",
-            "data",
-            "css"
+            "data"
           ]
         }
       ]
