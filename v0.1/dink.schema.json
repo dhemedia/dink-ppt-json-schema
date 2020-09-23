@@ -1450,6 +1450,10 @@
                   "description": "image file of the submit button",
                   "type": "string"
                 },
+                "path": {
+                  "description": "path to be added to each field in the result",
+                  "type": "string"
+                },
                 "inputs": {
                   "description": "list of paths of the fields used as input",
                   "type": "object"
@@ -1476,6 +1480,7 @@
               },
               "required": [
                 "image",
+                "path",
                 "inputs",
                 "required"
               ]
