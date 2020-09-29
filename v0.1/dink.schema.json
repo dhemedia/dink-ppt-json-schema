@@ -1446,43 +1446,18 @@
             "data": {
               "type": "object",
               "properties": {
-                "image": {
-                  "description": "image file of the submit button",
-                  "type": "string"
-                },
                 "path": {
                   "description": "path to be added to each field in the result",
                   "type": "string"
                 },
-                "inputs": {
+                "filters": {
                   "description": "list of paths of the fields used as input",
                   "type": "object"
-                },
-                "required": {
-                  "description": "fields that are required according the type",
-                  "type": "object",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "get": {
-                        "type": "object"
-                      },
-                      "submit": {
-                        "type": "object"
-                      }
-                    },
-                    "required": [
-                      "get",
-                      "submit"
-                    ]
-                  }
                 }
               },
               "required": [
-                "image",
                 "path",
-                "inputs",
-                "required"
+                "filters"
               ]
             }
           },
