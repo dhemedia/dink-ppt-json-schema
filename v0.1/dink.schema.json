@@ -1453,11 +1453,16 @@
                 "filters": {
                   "description": "list of paths of the fields used as input",
                   "type": "object"
+                },
+                "fields": {
+                  "description": "list of paths of the fields used to be sent",
+                  "type": "object"
                 }
               },
               "required": [
                 "path",
-                "filters"
+                "filters",
+                "fields"
               ]
             }
           },
