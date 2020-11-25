@@ -2016,7 +2016,13 @@
                 "src": {
                   "type": "string"
                 },
+                "button": {
+                  "type": "string"
+                },
                 "loop": {
+                  "type": "boolean"
+                },
+                "autoplay": {
                   "type": "boolean"
                 }
               },
